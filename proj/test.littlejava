@@ -1,0 +1,4 @@
+class f{
+	int a;
+	int b = 0;
+}

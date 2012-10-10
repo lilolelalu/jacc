@@ -7,24 +7,39 @@ public class JaccParser implements JaccParserConstants {
   public static void main(String args[]) {
     JaccParser parser;
     try {
-      parser = new JaccParser(new java.io.FileInputStream("./quicksort.littlejava"));
+      parser = new JaccParser(new java.io.FileInputStream("./test.littlejava"));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
       return ;
     }
+    try {
+      parser.Program();
+      System.out.println("program parsed successfully.");
+    } catch (ParseException e) {
+      System.out.println(e.getMessage());
+      System.out.println("Encountered errors during parse.");
+    }
+        /*
     while(true){
       Token tk = parser.token_source.getNextToken();
       int res=tk.kind;
-      String image=tk.image;
+      String image=tk.image; 
       if(res==0)
         { System.out.println("end of the file!"); break;}
       System.out.println(res + ": "+ image);
     }
+	*/
   }
 
 /*grammer grammer grammer grammer*/
 /*grammer grammer grammer grammer*/
 /*grammer grammer grammer grammer*/
+/*
+|
+  Type() <IDENTIFIER> ";"
+|
+  Type() <IDENTIFIER> "=" Expr() ";" 
+*/
   static final public void Program() throws ParseException {
     label_1:
     while (true) {
@@ -44,7 +59,50 @@ public class JaccParser implements JaccParserConstants {
   static final public void ClassDecl() throws ParseException {
     jj_consume_token(CLASS);
     jj_consume_token(IDENTIFIER);
-    jj_consume_token(SEMICOLON);
+    jj_consume_token(LBRACE);
+    label_2:
+    while (true) {
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case INT:
+        ;
+        break;
+      default:
+        jj_la1[1] = jj_gen;
+        break label_2;
+      }
+      VarDecl();
+    }
+    jj_consume_token(RBRACE);
+  }
+
+  static final public void VarDecl() throws ParseException {
+  System.out.println("var");
+    Type();
+    jj_consume_token(IDENTIFIER);
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case SEMICOLON:
+      jj_consume_token(SEMICOLON);
+                            System.out.println("short");
+      break;
+    case ASSIGN:
+      jj_consume_token(ASSIGN);
+      Expr();
+      jj_consume_token(SEMICOLON);
+      break;
+    default:
+      jj_la1[2] = jj_gen;
+      jj_consume_token(-1);
+      throw new ParseException();
+    }
+    System.out.println("end");
+  }
+
+  static final public void Type() throws ParseException {
+    jj_consume_token(INT);
+  }
+
+  static final public void Expr() throws ParseException {
+    jj_consume_token(DECIMAL_LITERAL);
   }
 
   static private boolean jj_initialized_once = false;
@@ -57,7 +115,7 @@ public class JaccParser implements JaccParserConstants {
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[1];
+  static final private int[] jj_la1 = new int[3];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static private int[] jj_la1_2;
@@ -67,13 +125,13 @@ public class JaccParser implements JaccParserConstants {
       jj_la1_init_2();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x2000,};
+      jj_la1_0 = new int[] {0x2000,0x80000000,0x0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,};
    }
    private static void jj_la1_init_2() {
-      jj_la1_2 = new int[] {0x0,};
+      jj_la1_2 = new int[] {0x0,0x0,0x9,};
    }
 
   /** Constructor with InputStream. */
@@ -94,7 +152,7 @@ public class JaccParser implements JaccParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -108,7 +166,7 @@ public class JaccParser implements JaccParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -125,7 +183,7 @@ public class JaccParser implements JaccParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -135,7 +193,7 @@ public class JaccParser implements JaccParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -151,7 +209,7 @@ public class JaccParser implements JaccParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -160,7 +218,7 @@ public class JaccParser implements JaccParserConstants {
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -216,7 +274,7 @@ public class JaccParser implements JaccParserConstants {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 3; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -253,4 +311,8 @@ public class JaccParser implements JaccParserConstants {
   static final public void disable_tracing() {
   }
 
+  /*
+  public static void log(String s){
+    System.out.println(String s);
+  }*/
 }
