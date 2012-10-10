@@ -1,4 +1,0 @@
-class f{
-	int a ;
-	int b = 3;
-}
