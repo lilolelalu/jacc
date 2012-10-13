@@ -79,12 +79,13 @@ SKIP :
 | <"/*" (~["*"])* "*" (~["/"] (~["*"])* "*")* "/">
 }
 
-TOKEN : /* RESERVED WORDS */
+/*
+TOKEN : 
 {
-	< CLASS: "class" >
+	"class"
 |
-	< STATIC: "static" >
-}
+	"static"
+}*/
 
 TOKEN : /* LITERALS */
 {
@@ -150,15 +151,62 @@ void Decl() #void : {}
 
 void VarDecl(): {}
 {
-	";" /*| ( "static" ) ? Type() <IDENTIFIER> "=" Expr() ";"*/
+	";" | "=" Expr() ";"
 }
 
 void MethodDecl(): {}
 {
-	"(" ")" "{" "}"
+	"(" ")" "{" Statement() * "}"
 }
 
 void Type(): {}
 {
 	<PRIMITIVE_TYPE> ( "[" "]" ) * | <IDENTIFIER> ( "[" "]" ) *
 }
+
+void Statement() #void : {}
+{
+	"{" Statement()* "}" #Block 
+| 
+	"return" Expr() ";" #ReturnStatement 
+|
+	"break" ";" 
+|
+	"continue" ";"
+|
+	AssignExpr()
+|
+	IfStatement() 
+| 
+	WhileStatement() | ForStatement() | 
+}
+
+void Expr() #void : {
+	AssignExpr()
+}
+
+void OrExpr() #void : {
+	AndExpr() ( "||" AndExpr() ) * #OrExpr(>1)
+}
+
+void AndExpr() #void : {
+	EquExpr() ( "&&" EquExpr() ) * #AndExpr(>1)
+}
+
+void EquExpr() #void : {
+	RelExpr() ( ( "==" | "!=" ) RelExpr() ) * #EquExpr(>1)
+}
+
+void RelExpr() #void : {
+	AndExpr() ( ( "<" | "<=" | ">" | ">=" ) AddExpr() ) * #RelExpr(>1)
+}
+
+void AddExpr() #void : {
+	MulExpr() ( ( "+" | "-" ) MulExpr() ) * #AddExpr(>1)
+}
+
+void MulExpr() #void : {
+	UnaryExpr() ( ( "*" | "/" | "%" ) UnaryExpr() ) * #MulExpr(>1)
+}
+
+
