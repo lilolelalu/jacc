@@ -9,25 +9,25 @@ public interface LittleJavaConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int CLASS_DEF = 7;
+  int BREAK = 7;
   /** RegularExpression Id. */
-  int STATIC_MOD = 8;
+  int CLASS = 8;
   /** RegularExpression Id. */
-  int IF = 9;
+  int CONTINUE = 9;
   /** RegularExpression Id. */
   int ELSE = 10;
   /** RegularExpression Id. */
-  int WHILE = 11;
+  int FALSE = 11;
   /** RegularExpression Id. */
-  int BREAK = 12;
+  int IF = 12;
   /** RegularExpression Id. */
-  int CONTINUE = 13;
+  int RETURN = 13;
   /** RegularExpression Id. */
-  int TRUE = 14;
+  int STATIC = 14;
   /** RegularExpression Id. */
-  int FALSE = 15;
+  int TRUE = 15;
   /** RegularExpression Id. */
-  int RETURN = 16;
+  int WHILE = 16;
   /** RegularExpression Id. */
   int INTEGER_LITERAL = 17;
   /** RegularExpression Id. */
@@ -69,16 +69,16 @@ public interface LittleJavaConstants {
     "\"\\r\"",
     "<token of kind 5>",
     "<token of kind 6>",
-    "\"class\"",
-    "\"static\"",
-    "\"if\"",
-    "\"else\"",
-    "\"while\"",
     "\"break\"",
+    "\"class\"",
     "\"continue\"",
-    "\"true\"",
+    "\"else\"",
     "\"false\"",
+    "\"if\"",
     "\"return\"",
+    "\"static\"",
+    "\"true\"",
+    "\"while\"",
     "<INTEGER_LITERAL>",
     "<FLOAT_LITERAL>",
     "<DECIMAL_LITERAL>",

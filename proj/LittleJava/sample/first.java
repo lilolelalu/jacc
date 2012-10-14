@@ -2,13 +2,14 @@ class hello{
 	int i;
 	static int j;
 	static void main(){
-		4+5+3-4||10;
-		5&&3||4+5*6-(7)--a;
-		if (3+3){
-			9*9;
-			while(0){
-				a+b;
-			}
+		int i = 1;
+		int s = 0;
+		while (i <= 10){
+			if ( i % 2 == 0)
+				if (s == 0)
+					s = s + i;
+				else i = i + 1;
+			i = i + 1;
 		}
 	}
 	void test(){

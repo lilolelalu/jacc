@@ -82,25 +82,25 @@ SKIP :
 
 TOKEN : // RESERVED WORDS
 {
-	< CLASS_DEF: "class" >
-|
-	< STATIC_MOD: "static" >
-|
-	< IF: "if" >
-|
-	< ELSE: "else" >
-|
-	< WHILE: "while" >
-|
 	< BREAK: "break" >
+|
+	< CLASS: "class" >
 |
 	< CONTINUE: "continue" >
 |
-	< TRUE: "true" >
+	< ELSE: "else" >
 |
 	< FALSE: "false" >
 |
+	< IF: "if" >
+|
 	< RETURN: "return" >
+|
+	< STATIC: "static" >
+|
+	< TRUE: "true" >
+|
+	< WHILE: "while" >
 }
 
 TOKEN : /* LITERALS */
@@ -162,17 +162,17 @@ void ClassDecl(): {}
 	"class" <IDENTIFIER> "{" ( Decl() ) * "}"
 }
 
-void Decl() #void : {}
+void Decl()#void : {}
 {
-	( "static" ) ? Type() <IDENTIFIER> ( VarDecl() | MethodDecl() )
+	( "static" ) ? Type() <IDENTIFIER> ( VarDecl() #MemberVariableDeclaration | MethodDecl() #MemberFunctionDeclaration )
 }
 
-void VarDecl(): {}
+void VarDecl()#void : {}
 {
 	";" | "=" Expr() ";"
 }
 
-void MethodDecl(): {}
+void MethodDecl()#void : {}
 {
 	"(" ")" "{" ( Statement() ) * "}"
 }
@@ -192,7 +192,12 @@ void Statement() #void : {}
 |
 	"continue" ";" #ContinueStatement
 |
-	OrExpr() ";"
+	(
+	LOOKAHEAD(2)
+		Expr() ";"
+	|	
+		Type() <IDENTIFIER> VarDecl() #LocalVariableDeclarationStatement
+	)
 |
 	IfStatement() 
 | 
@@ -203,7 +208,8 @@ void Statement() #void : {}
 
 void IfStatement(): {}
 {
-	"if" "(" Expr() ")" Statement() /*( "else" Statement() ) ?*/
+	//"if" "(" Expr() #IfConditionSection ")" Statement() #IfMainSection ( "else" Statement() #IfElseSection ) ?
+	"if" "(" Expr() #IfConditionSection ")" ( Statement() #IfMainSection ) ( "else" Statement() #IfElseSection ) ?
 }
 
 void WhileStatement(): {}
@@ -213,19 +219,14 @@ void WhileStatement(): {}
 
 void Expr() #void : {}
 {
-	OrExpr()
+	AssignExpr()
 }
 
-/*void AssignExpr() #void : {}
+void AssignExpr() #void : {}
 {
-	//LeftHandValue() "=" AssignExpr() #AssignExpr | OrExpr()
-	LeftHandValue() AssignExprFurther() | RightHandValue()
+	LOOKAHEAD(2)
+	LeftHandValue() "=" AssignExpr() #AssignExpr | OrExpr()
 }
-
-void AssignExprFurther() #void: {}
-{
-	( "=" AssignExpr() ) * #AssignExpr(>1) | 
-}*/
 
 void OrExpr() #void : {}
 {
