@@ -85,7 +85,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     try {
       jj_consume_token(CLASS);
       jj_consume_token(IDENTIFIER);
-      jj_consume_token(31);
+      jj_consume_token(32);
       label_2:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -100,7 +100,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         }
         Decl();
       }
-      jj_consume_token(32);
+      jj_consume_token(33);
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -134,8 +134,8 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     Type();
     jj_consume_token(IDENTIFIER);
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 33:
     case 34:
+    case 35:
                                                ASTMemberVariableDeclaration jjtn001 = new ASTMemberVariableDeclaration(JJTMEMBERVARIABLEDECLARATION);
                                                boolean jjtc001 = true;
                                                jjtree.openNodeScope(jjtn001);
@@ -161,7 +161,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
                                                }
       }
       break;
-    case 35:
+    case 36:
                                                                                       ASTMemberFunctionDeclaration jjtn002 = new ASTMemberFunctionDeclaration(JJTMEMBERFUNCTIONDECLARATION);
                                                                                       boolean jjtc002 = true;
                                                                                       jjtree.openNodeScope(jjtn002);
@@ -196,13 +196,13 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
 
   static final public void VarDecl() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 33:
-      jj_consume_token(33);
-      break;
     case 34:
       jj_consume_token(34);
+      break;
+    case 35:
+      jj_consume_token(35);
       Expr();
-      jj_consume_token(33);
+      jj_consume_token(34);
       break;
     default:
       jj_la1[4] = jj_gen;
@@ -212,15 +212,16 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   }
 
   static final public void MethodDecl() throws ParseException {
-    jj_consume_token(35);
     jj_consume_token(36);
-    jj_consume_token(31);
+    jj_consume_token(37);
+    jj_consume_token(32);
     label_3:
     while (true) {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case BREAK:
       case CONTINUE:
       case FALSE:
+      case FOR:
       case IF:
       case RETURN:
       case TRUE:
@@ -229,10 +230,10 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       case FLOAT_LITERAL:
       case PRIMITIVE_TYPE:
       case IDENTIFIER:
-      case 31:
-      case 35:
-      case 48:
-      case 52:
+      case 32:
+      case 36:
+      case 49:
+      case 53:
         ;
         break;
       default:
@@ -241,7 +242,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       }
       Statement();
     }
-    jj_consume_token(32);
+    jj_consume_token(33);
   }
 
   static final public void Type() throws ParseException {
@@ -256,15 +257,15 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         label_4:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case 37:
+          case 38:
             ;
             break;
           default:
             jj_la1[6] = jj_gen;
             break label_4;
           }
-          jj_consume_token(37);
           jj_consume_token(38);
+          jj_consume_token(39);
         }
         break;
       case IDENTIFIER:
@@ -272,15 +273,15 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         label_5:
         while (true) {
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-          case 37:
+          case 38:
             ;
             break;
           default:
             jj_la1[7] = jj_gen;
             break label_5;
           }
-          jj_consume_token(37);
           jj_consume_token(38);
+          jj_consume_token(39);
         }
         break;
       default:
@@ -297,82 +298,48 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
 
   static final public void Statement() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 31:
-      jj_consume_token(31);
-      label_6:
-      while (true) {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case BREAK:
-        case CONTINUE:
-        case FALSE:
-        case IF:
-        case RETURN:
-        case TRUE:
-        case WHILE:
-        case INTEGER_LITERAL:
-        case FLOAT_LITERAL:
-        case PRIMITIVE_TYPE:
-        case IDENTIFIER:
-        case 31:
-        case 35:
-        case 48:
-        case 52:
-          ;
-          break;
-        default:
-          jj_la1[9] = jj_gen;
-          break label_6;
-        }
-        Statement();
-      }
-                                ASTBlockStatement jjtn001 = new ASTBlockStatement(JJTBLOCKSTATEMENT);
-                                boolean jjtc001 = true;
-                                jjtree.openNodeScope(jjtn001);
-      try {
-        jj_consume_token(32);
-      } finally {
-                                if (jjtc001) {
-                                  jjtree.closeNodeScope(jjtn001, true);
-                                }
-      }
+    case 32:
+      jj_consume_token(32);
+      BlockStatement();
+      jj_consume_token(33);
       break;
     case RETURN:
       jj_consume_token(RETURN);
       Expr();
-                          ASTReturnStatement jjtn002 = new ASTReturnStatement(JJTRETURNSTATEMENT);
-                          boolean jjtc002 = true;
-                          jjtree.openNodeScope(jjtn002);
+                          ASTReturnStatement jjtn001 = new ASTReturnStatement(JJTRETURNSTATEMENT);
+                          boolean jjtc001 = true;
+                          jjtree.openNodeScope(jjtn001);
       try {
-        jj_consume_token(33);
+        jj_consume_token(34);
       } finally {
-                          if (jjtc002) {
-                            jjtree.closeNodeScope(jjtn002, true);
+                          if (jjtc001) {
+                            jjtree.closeNodeScope(jjtn001, true);
                           }
       }
       break;
     case BREAK:
       jj_consume_token(BREAK);
-                  ASTBreakStatement jjtn003 = new ASTBreakStatement(JJTBREAKSTATEMENT);
-                  boolean jjtc003 = true;
-                  jjtree.openNodeScope(jjtn003);
+                  ASTBreakStatement jjtn002 = new ASTBreakStatement(JJTBREAKSTATEMENT);
+                  boolean jjtc002 = true;
+                  jjtree.openNodeScope(jjtn002);
       try {
-        jj_consume_token(33);
+        jj_consume_token(34);
       } finally {
-                  if (jjtc003) {
-                    jjtree.closeNodeScope(jjtn003, true);
+                  if (jjtc002) {
+                    jjtree.closeNodeScope(jjtn002, true);
                   }
       }
       break;
     case CONTINUE:
       jj_consume_token(CONTINUE);
-                     ASTContinueStatement jjtn004 = new ASTContinueStatement(JJTCONTINUESTATEMENT);
-                     boolean jjtc004 = true;
-                     jjtree.openNodeScope(jjtn004);
+                     ASTContinueStatement jjtn003 = new ASTContinueStatement(JJTCONTINUESTATEMENT);
+                     boolean jjtc003 = true;
+                     jjtree.openNodeScope(jjtn003);
       try {
-        jj_consume_token(33);
+        jj_consume_token(34);
       } finally {
-                     if (jjtc004) {
-                       jjtree.closeNodeScope(jjtn004, true);
+                     if (jjtc003) {
+                       jjtree.closeNodeScope(jjtn003, true);
                      }
       }
       break;
@@ -382,49 +349,11 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     case FLOAT_LITERAL:
     case PRIMITIVE_TYPE:
     case IDENTIFIER:
-    case 35:
-    case 48:
-    case 52:
-      if (jj_2_1(2)) {
-        Expr();
-        jj_consume_token(33);
-      } else {
-        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case PRIMITIVE_TYPE:
-        case IDENTIFIER:
-          Type();
-          jj_consume_token(IDENTIFIER);
-                                      ASTLocalVariableDeclarationStatement jjtn005 = new ASTLocalVariableDeclarationStatement(JJTLOCALVARIABLEDECLARATIONSTATEMENT);
-                                      boolean jjtc005 = true;
-                                      jjtree.openNodeScope(jjtn005);
-          try {
-            VarDecl();
-          } catch (Throwable jjte005) {
-                                      if (jjtc005) {
-                                        jjtree.clearNodeScope(jjtn005);
-                                        jjtc005 = false;
-                                      } else {
-                                        jjtree.popNode();
-                                      }
-                                      if (jjte005 instanceof RuntimeException) {
-                                        {if (true) throw (RuntimeException)jjte005;}
-                                      }
-                                      if (jjte005 instanceof ParseException) {
-                                        {if (true) throw (ParseException)jjte005;}
-                                      }
-                                      {if (true) throw (Error)jjte005;}
-          } finally {
-                                      if (jjtc005) {
-                                        jjtree.closeNodeScope(jjtn005, true);
-                                      }
-          }
-          break;
-        default:
-          jj_la1[10] = jj_gen;
-          jj_consume_token(-1);
-          throw new ParseException();
-        }
-      }
+    case 36:
+    case 49:
+    case 53:
+      ExpressionDeclaration();
+      jj_consume_token(34);
       break;
     case IF:
       IfStatement();
@@ -432,10 +361,122 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     case WHILE:
       WhileStatement();
       break;
+    case FOR:
+      ForStatement();
+      break;
     default:
-      jj_la1[11] = jj_gen;
+      jj_la1[9] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
+    }
+  }
+
+  static final public void BlockStatement() throws ParseException {
+                        /*@bgen(jjtree) BlockStatement */
+  ASTBlockStatement jjtn000 = new ASTBlockStatement(JJTBLOCKSTATEMENT);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+    try {
+      label_6:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case BREAK:
+        case CONTINUE:
+        case FALSE:
+        case FOR:
+        case IF:
+        case RETURN:
+        case TRUE:
+        case WHILE:
+        case INTEGER_LITERAL:
+        case FLOAT_LITERAL:
+        case PRIMITIVE_TYPE:
+        case IDENTIFIER:
+        case 32:
+        case 36:
+        case 49:
+        case 53:
+          ;
+          break;
+        default:
+          jj_la1[10] = jj_gen;
+          break label_6;
+        }
+        Statement();
+      }
+    } catch (Throwable jjte000) {
+          if (jjtc000) {
+            jjtree.clearNodeScope(jjtn000);
+            jjtc000 = false;
+          } else {
+            jjtree.popNode();
+          }
+          if (jjte000 instanceof RuntimeException) {
+            {if (true) throw (RuntimeException)jjte000;}
+          }
+          if (jjte000 instanceof ParseException) {
+            {if (true) throw (ParseException)jjte000;}
+          }
+          {if (true) throw (Error)jjte000;}
+    } finally {
+          if (jjtc000) {
+            jjtree.closeNodeScope(jjtn000, true);
+          }
+    }
+  }
+
+  static final public void ExpressionDeclaration() throws ParseException {
+    if (jj_2_1(2)) {
+      Expr();
+    } else {
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case PRIMITIVE_TYPE:
+      case IDENTIFIER:
+        LocalVariableDeclaration();
+        break;
+      default:
+        jj_la1[11] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
+    }
+  }
+
+  static final public void LocalVariableDeclaration() throws ParseException {
+                                  /*@bgen(jjtree) LocalVariableDeclaration */
+  ASTLocalVariableDeclaration jjtn000 = new ASTLocalVariableDeclaration(JJTLOCALVARIABLEDECLARATION);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+    try {
+      Type();
+      jj_consume_token(IDENTIFIER);
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case 35:
+        jj_consume_token(35);
+        Expr();
+        break;
+      default:
+        jj_la1[12] = jj_gen;
+        ;
+      }
+    } catch (Throwable jjte000) {
+          if (jjtc000) {
+            jjtree.clearNodeScope(jjtn000);
+            jjtc000 = false;
+          } else {
+            jjtree.popNode();
+          }
+          if (jjte000 instanceof RuntimeException) {
+            {if (true) throw (RuntimeException)jjte000;}
+          }
+          if (jjte000 instanceof ParseException) {
+            {if (true) throw (ParseException)jjte000;}
+          }
+          {if (true) throw (Error)jjte000;}
+    } finally {
+          if (jjtc000) {
+            jjtree.closeNodeScope(jjtn000, true);
+          }
     }
   }
 
@@ -446,7 +487,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   jjtree.openNodeScope(jjtn000);
     try {
       jj_consume_token(IF);
-      jj_consume_token(35);
+      jj_consume_token(36);
                    ASTIfConditionSection jjtn001 = new ASTIfConditionSection(JJTIFCONDITIONSECTION);
                    boolean jjtc001 = true;
                    jjtree.openNodeScope(jjtn001);
@@ -471,8 +512,8 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
                      jjtree.closeNodeScope(jjtn001, true);
                    }
       }
-      jj_consume_token(36);
-                                                    ASTIfMainSection jjtn002 = new ASTIfMainSection(JJTIFMAINSECTION);
+      jj_consume_token(37);
+                                                    ASTIfExecuteSection jjtn002 = new ASTIfExecuteSection(JJTIFEXECUTESECTION);
                                                     boolean jjtc002 = true;
                                                     jjtree.openNodeScope(jjtn002);
       try {
@@ -499,33 +540,33 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case ELSE:
         jj_consume_token(ELSE);
-                                                                                          ASTIfElseSection jjtn003 = new ASTIfElseSection(JJTIFELSESECTION);
-                                                                                          boolean jjtc003 = true;
-                                                                                          jjtree.openNodeScope(jjtn003);
+                                                                                             ASTIfElseSection jjtn003 = new ASTIfElseSection(JJTIFELSESECTION);
+                                                                                             boolean jjtc003 = true;
+                                                                                             jjtree.openNodeScope(jjtn003);
         try {
           Statement();
         } catch (Throwable jjte003) {
-                                                                                          if (jjtc003) {
-                                                                                            jjtree.clearNodeScope(jjtn003);
-                                                                                            jjtc003 = false;
-                                                                                          } else {
-                                                                                            jjtree.popNode();
-                                                                                          }
-                                                                                          if (jjte003 instanceof RuntimeException) {
-                                                                                            {if (true) throw (RuntimeException)jjte003;}
-                                                                                          }
-                                                                                          if (jjte003 instanceof ParseException) {
-                                                                                            {if (true) throw (ParseException)jjte003;}
-                                                                                          }
-                                                                                          {if (true) throw (Error)jjte003;}
+                                                                                             if (jjtc003) {
+                                                                                               jjtree.clearNodeScope(jjtn003);
+                                                                                               jjtc003 = false;
+                                                                                             } else {
+                                                                                               jjtree.popNode();
+                                                                                             }
+                                                                                             if (jjte003 instanceof RuntimeException) {
+                                                                                               {if (true) throw (RuntimeException)jjte003;}
+                                                                                             }
+                                                                                             if (jjte003 instanceof ParseException) {
+                                                                                               {if (true) throw (ParseException)jjte003;}
+                                                                                             }
+                                                                                             {if (true) throw (Error)jjte003;}
         } finally {
-                                                                                          if (jjtc003) {
-                                                                                            jjtree.closeNodeScope(jjtn003, true);
-                                                                                          }
+                                                                                             if (jjtc003) {
+                                                                                               jjtree.closeNodeScope(jjtn003, true);
+                                                                                             }
         }
         break;
       default:
-        jj_la1[12] = jj_gen;
+        jj_la1[13] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -556,10 +597,135 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   jjtree.openNodeScope(jjtn000);
     try {
       jj_consume_token(WHILE);
-      jj_consume_token(35);
-      Expr();
       jj_consume_token(36);
+      Expr();
+      jj_consume_token(37);
       Statement();
+    } catch (Throwable jjte000) {
+          if (jjtc000) {
+            jjtree.clearNodeScope(jjtn000);
+            jjtc000 = false;
+          } else {
+            jjtree.popNode();
+          }
+          if (jjte000 instanceof RuntimeException) {
+            {if (true) throw (RuntimeException)jjte000;}
+          }
+          if (jjte000 instanceof ParseException) {
+            {if (true) throw (ParseException)jjte000;}
+          }
+          {if (true) throw (Error)jjte000;}
+    } finally {
+          if (jjtc000) {
+            jjtree.closeNodeScope(jjtn000, true);
+          }
+    }
+  }
+
+  static final public void ForStatement() throws ParseException {
+                      /*@bgen(jjtree) ForStatement */
+  ASTForStatement jjtn000 = new ASTForStatement(JJTFORSTATEMENT);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+    try {
+      jj_consume_token(FOR);
+                ASTForInitSection jjtn001 = new ASTForInitSection(JJTFORINITSECTION);
+                boolean jjtc001 = true;
+                jjtree.openNodeScope(jjtn001);
+      try {
+        jj_consume_token(36);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case FALSE:
+        case TRUE:
+        case INTEGER_LITERAL:
+        case FLOAT_LITERAL:
+        case PRIMITIVE_TYPE:
+        case IDENTIFIER:
+        case 36:
+        case 49:
+        case 53:
+          ExpressionDeclaration();
+          break;
+        default:
+          jj_la1[14] = jj_gen;
+          ;
+        }
+        jj_consume_token(34);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case FALSE:
+        case TRUE:
+        case INTEGER_LITERAL:
+        case FLOAT_LITERAL:
+        case IDENTIFIER:
+        case 36:
+        case 49:
+        case 53:
+          Expr();
+          break;
+        default:
+          jj_la1[15] = jj_gen;
+          ;
+        }
+        jj_consume_token(34);
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case FALSE:
+        case TRUE:
+        case INTEGER_LITERAL:
+        case FLOAT_LITERAL:
+        case IDENTIFIER:
+        case 36:
+        case 49:
+        case 53:
+          AssignExpr();
+          break;
+        default:
+          jj_la1[16] = jj_gen;
+          ;
+        }
+        jj_consume_token(37);
+      } catch (Throwable jjte001) {
+                if (jjtc001) {
+                  jjtree.clearNodeScope(jjtn001);
+                  jjtc001 = false;
+                } else {
+                  jjtree.popNode();
+                }
+                if (jjte001 instanceof RuntimeException) {
+                  {if (true) throw (RuntimeException)jjte001;}
+                }
+                if (jjte001 instanceof ParseException) {
+                  {if (true) throw (ParseException)jjte001;}
+                }
+                {if (true) throw (Error)jjte001;}
+      } finally {
+                if (jjtc001) {
+                  jjtree.closeNodeScope(jjtn001, true);
+                }
+      }
+                                                                                                                   ASTForExecuteSection jjtn002 = new ASTForExecuteSection(JJTFOREXECUTESECTION);
+                                                                                                                   boolean jjtc002 = true;
+                                                                                                                   jjtree.openNodeScope(jjtn002);
+      try {
+        Statement();
+      } catch (Throwable jjte002) {
+                                                                                                                   if (jjtc002) {
+                                                                                                                     jjtree.clearNodeScope(jjtn002);
+                                                                                                                     jjtc002 = false;
+                                                                                                                   } else {
+                                                                                                                     jjtree.popNode();
+                                                                                                                   }
+                                                                                                                   if (jjte002 instanceof RuntimeException) {
+                                                                                                                     {if (true) throw (RuntimeException)jjte002;}
+                                                                                                                   }
+                                                                                                                   if (jjte002 instanceof ParseException) {
+                                                                                                                     {if (true) throw (ParseException)jjte002;}
+                                                                                                                   }
+                                                                                                                   {if (true) throw (Error)jjte002;}
+      } finally {
+                                                                                                                   if (jjtc002) {
+                                                                                                                     jjtree.closeNodeScope(jjtn002, true);
+                                                                                                                   }
+      }
     } catch (Throwable jjte000) {
           if (jjtc000) {
             jjtree.clearNodeScope(jjtn000);
@@ -588,7 +754,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   static final public void AssignExpr() throws ParseException {
     if (jj_2_2(2)) {
       LeftHandValue();
-      jj_consume_token(34);
+      jj_consume_token(35);
                               ASTAssignExpr jjtn001 = new ASTAssignExpr(JJTASSIGNEXPR);
                               boolean jjtc001 = true;
                               jjtree.openNodeScope(jjtn001);
@@ -620,13 +786,13 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       case INTEGER_LITERAL:
       case FLOAT_LITERAL:
       case IDENTIFIER:
-      case 35:
-      case 48:
-      case 52:
+      case 36:
+      case 49:
+      case 53:
         OrExpr();
         break;
       default:
-        jj_la1[13] = jj_gen;
+        jj_la1[17] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -642,14 +808,14 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       label_7:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 39:
+        case 40:
           ;
           break;
         default:
-          jj_la1[14] = jj_gen;
+          jj_la1[18] = jj_gen;
           break label_7;
         }
-        jj_consume_token(39);
+        jj_consume_token(40);
         AndExpr();
       }
     } catch (Throwable jjte001) {
@@ -682,14 +848,14 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       label_8:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 40:
+        case 41:
           ;
           break;
         default:
-          jj_la1[15] = jj_gen;
+          jj_la1[19] = jj_gen;
           break label_8;
         }
-        jj_consume_token(40);
+        jj_consume_token(41);
         EquExpr();
       }
     } catch (Throwable jjte001) {
@@ -722,23 +888,23 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       label_9:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 41:
         case 42:
+        case 43:
           ;
           break;
         default:
-          jj_la1[16] = jj_gen;
+          jj_la1[20] = jj_gen;
           break label_9;
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 41:
-          jj_consume_token(41);
-          break;
         case 42:
           jj_consume_token(42);
           break;
+        case 43:
+          jj_consume_token(43);
+          break;
         default:
-          jj_la1[17] = jj_gen;
+          jj_la1[21] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -774,20 +940,17 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       label_10:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 43:
         case 44:
         case 45:
         case 46:
+        case 47:
           ;
           break;
         default:
-          jj_la1[18] = jj_gen;
+          jj_la1[22] = jj_gen;
           break label_10;
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 43:
-          jj_consume_token(43);
-          break;
         case 44:
           jj_consume_token(44);
           break;
@@ -797,8 +960,11 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         case 46:
           jj_consume_token(46);
           break;
+        case 47:
+          jj_consume_token(47);
+          break;
         default:
-          jj_la1[19] = jj_gen;
+          jj_la1[23] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -834,23 +1000,23 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       label_11:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 47:
         case 48:
+        case 49:
           ;
           break;
         default:
-          jj_la1[20] = jj_gen;
+          jj_la1[24] = jj_gen;
           break label_11;
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 47:
-          jj_consume_token(47);
-          break;
         case 48:
           jj_consume_token(48);
           break;
+        case 49:
+          jj_consume_token(49);
+          break;
         default:
-          jj_la1[21] = jj_gen;
+          jj_la1[25] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -886,27 +1052,27 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       label_12:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 49:
         case 50:
         case 51:
+        case 52:
           ;
           break;
         default:
-          jj_la1[22] = jj_gen;
+          jj_la1[26] = jj_gen;
           break label_12;
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case 49:
-          jj_consume_token(49);
-          break;
         case 50:
           jj_consume_token(50);
           break;
         case 51:
           jj_consume_token(51);
           break;
+        case 52:
+          jj_consume_token(52);
+          break;
         default:
-          jj_la1[23] = jj_gen;
+          jj_la1[27] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -935,26 +1101,26 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
 
   static final public void UnaryExpr() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-    case 48:
-    case 52:
+    case 49:
+    case 53:
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 48:
-        jj_consume_token(48);
+      case 49:
+        jj_consume_token(49);
         break;
-      case 52:
-        jj_consume_token(52);
+      case 53:
+        jj_consume_token(53);
         break;
       default:
-        jj_la1[24] = jj_gen;
+        jj_la1[28] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
       UnaryExpr();
       break;
-    case 35:
-      jj_consume_token(35);
-      Expr();
+    case 36:
       jj_consume_token(36);
+      Expr();
+      jj_consume_token(37);
       break;
     case FALSE:
     case TRUE:
@@ -966,7 +1132,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       LeftHandValue();
       break;
     default:
-      jj_la1[25] = jj_gen;
+      jj_la1[29] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -996,7 +1162,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         jj_consume_token(FLOAT_LITERAL);
         break;
       default:
-        jj_la1[26] = jj_gen;
+        jj_la1[30] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1035,54 +1201,8 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     finally { jj_save(1, xla); }
   }
 
-  static private boolean jj_3R_13() {
-    if (jj_3R_15()) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_23() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(41)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(42)) return true;
-    }
-    return false;
-  }
-
-  static private boolean jj_3R_26() {
-    if (jj_3R_28()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_29()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
-  static private boolean jj_3R_21() {
-    if (jj_scan_token(40)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_24() {
-    if (jj_3R_26()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_27()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
-  static private boolean jj_3R_31() {
-    if (jj_scan_token(35)) return true;
-    if (jj_3R_13()) return true;
-    return false;
-  }
-
   static private boolean jj_3R_19() {
-    if (jj_scan_token(39)) return true;
+    if (jj_scan_token(40)) return true;
     return false;
   }
 
@@ -1114,24 +1234,23 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   static private boolean jj_3R_29() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(49)) {
-    jj_scanpos = xsp;
     if (jj_scan_token(50)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(51)) return true;
+    if (jj_scan_token(51)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(52)) return true;
     }
     }
-    return false;
-  }
-
-  static private boolean jj_3R_14() {
-    if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
   static private boolean jj_3_1() {
     if (jj_3R_13()) return true;
-    if (jj_scan_token(33)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_14() {
+    if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
@@ -1148,13 +1267,13 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   static private boolean jj_3R_34() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(15)) {
+    if (jj_scan_token(16)) {
     jj_scanpos = xsp;
     if (jj_scan_token(11)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(17)) {
+    if (jj_scan_token(18)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(18)) return true;
+    if (jj_scan_token(19)) return true;
     }
     }
     }
@@ -1164,9 +1283,9 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   static private boolean jj_3R_27() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(47)) {
+    if (jj_scan_token(48)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(48)) return true;
+    if (jj_scan_token(49)) return true;
     }
     return false;
   }
@@ -1184,9 +1303,9 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   static private boolean jj_3R_30() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(48)) {
+    if (jj_scan_token(49)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(52)) return true;
+    if (jj_scan_token(53)) return true;
     }
     if (jj_3R_28()) return true;
     return false;
@@ -1216,13 +1335,13 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   static private boolean jj_3R_25() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(43)) {
-    jj_scanpos = xsp;
     if (jj_scan_token(44)) {
     jj_scanpos = xsp;
     if (jj_scan_token(45)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(46)) return true;
+    if (jj_scan_token(46)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(47)) return true;
     }
     }
     }
@@ -1241,12 +1360,58 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
 
   static private boolean jj_3_2() {
     if (jj_3R_14()) return true;
-    if (jj_scan_token(34)) return true;
+    if (jj_scan_token(35)) return true;
     return false;
   }
 
   static private boolean jj_3R_32() {
     if (jj_3R_34()) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_13() {
+    if (jj_3R_15()) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_23() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(42)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(43)) return true;
+    }
+    return false;
+  }
+
+  static private boolean jj_3R_26() {
+    if (jj_3R_28()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_29()) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
+  static private boolean jj_3R_21() {
+    if (jj_scan_token(41)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_24() {
+    if (jj_3R_26()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_27()) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
+  static private boolean jj_3R_31() {
+    if (jj_scan_token(36)) return true;
+    if (jj_3R_13()) return true;
     return false;
   }
 
@@ -1262,7 +1427,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   static private Token jj_scanpos, jj_lastpos;
   static private int jj_la;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[27];
+  static final private int[] jj_la1 = new int[31];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -1270,10 +1435,10 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x100,0x10404000,0x4000,0x0,0x0,0x9047ba80,0x0,0x0,0x10400000,0x9047ba80,0x10400000,0x9047ba80,0x400,0x10068800,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x10068800,0x68800,};
+      jj_la1_0 = new int[] {0x100,0x20808000,0x8000,0x0,0x0,0x208f7a80,0x0,0x0,0x20800000,0x208f7a80,0x208f7a80,0x20800000,0x0,0x400,0x208d0800,0x200d0800,0x200d0800,0x200d0800,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x200d0800,0xd0800,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,0xe,0x6,0x110008,0x20,0x20,0x0,0x110008,0x0,0x110008,0x0,0x110008,0x80,0x100,0x600,0x600,0x7800,0x7800,0x18000,0x18000,0xe0000,0xe0000,0x110000,0x110008,0x0,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x1c,0xc,0x220011,0x40,0x40,0x0,0x220011,0x220011,0x0,0x8,0x0,0x220010,0x220010,0x220010,0x220010,0x100,0x200,0xc00,0xc00,0xf000,0xf000,0x30000,0x30000,0x1c0000,0x1c0000,0x220000,0x220010,0x0,};
    }
   static final private JJCalls[] jj_2_rtns = new JJCalls[2];
   static private boolean jj_rescan = false;
@@ -1297,7 +1462,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 27; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1313,7 +1478,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 27; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1331,7 +1496,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 27; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1343,7 +1508,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 27; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1360,7 +1525,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 27; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1371,7 +1536,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 27; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1483,12 +1648,12 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[53];
+    boolean[] la1tokens = new boolean[54];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 27; i++) {
+    for (int i = 0; i < 31; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -1500,7 +1665,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         }
       }
     }
-    for (int i = 0; i < 53; i++) {
+    for (int i = 0; i < 54; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

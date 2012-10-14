@@ -92,6 +92,8 @@ TOKEN : // RESERVED WORDS
 |
 	< FALSE: "false" >
 |
+	< FOR: "for" >
+|
 	< IF: "if" >
 |
 	< RETURN: "return" >
@@ -184,7 +186,7 @@ void Type(): {}
 
 void Statement() #void : {}
 {
-	"{" ( Statement() ) * "}" #BlockStatement 
+	"{" BlockStatement() "}" 
 | 
 	"return" Expr() ";" #ReturnStatement 
 |
@@ -192,29 +194,44 @@ void Statement() #void : {}
 |
 	"continue" ";" #ContinueStatement
 |
-	(
-	LOOKAHEAD(2)
-		Expr() ";"
-	|	
-		Type() <IDENTIFIER> VarDecl() #LocalVariableDeclarationStatement
-	)
+	ExpressionDeclaration() ";"
 |
 	IfStatement() 
 | 
 	WhileStatement() 
-/*|
-	ForStatement()*/
+|
+	ForStatement()
+}
+
+void BlockStatement(): {}
+{
+	( Statement() ) *
+}
+
+void ExpressionDeclaration() #void: {}
+{
+	LOOKAHEAD(2)
+	Expr() | LocalVariableDeclaration()
+}
+
+void LocalVariableDeclaration(): {}
+{
+	Type() <IDENTIFIER> ( "=" Expr() ) ?
 }
 
 void IfStatement(): {}
 {
-	//"if" "(" Expr() #IfConditionSection ")" Statement() #IfMainSection ( "else" Statement() #IfElseSection ) ?
-	"if" "(" Expr() #IfConditionSection ")" ( Statement() #IfMainSection ) ( "else" Statement() #IfElseSection ) ?
+	"if" "(" Expr() #IfConditionSection ")" ( Statement() #IfExecuteSection ) ( "else" Statement() #IfElseSection ) ?
 }
 
 void WhileStatement(): {}
 {
 	"while" "(" Expr() ")" Statement()
+}
+
+void ForStatement(): {}
+{
+	"for" ( "(" ( ExpressionDeclaration() ) ? ";"  ( Expr() ) ? ";" ( AssignExpr() ) ? ")" ) #ForInitSection Statement() #ForExecuteSection
 }
 
 void Expr() #void : {}

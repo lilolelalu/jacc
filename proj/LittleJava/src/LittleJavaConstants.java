@@ -19,43 +19,45 @@ public interface LittleJavaConstants {
   /** RegularExpression Id. */
   int FALSE = 11;
   /** RegularExpression Id. */
-  int IF = 12;
+  int FOR = 12;
   /** RegularExpression Id. */
-  int RETURN = 13;
+  int IF = 13;
   /** RegularExpression Id. */
-  int STATIC = 14;
+  int RETURN = 14;
   /** RegularExpression Id. */
-  int TRUE = 15;
+  int STATIC = 15;
   /** RegularExpression Id. */
-  int WHILE = 16;
+  int TRUE = 16;
   /** RegularExpression Id. */
-  int INTEGER_LITERAL = 17;
+  int WHILE = 17;
   /** RegularExpression Id. */
-  int FLOAT_LITERAL = 18;
+  int INTEGER_LITERAL = 18;
   /** RegularExpression Id. */
-  int DECIMAL_LITERAL = 19;
+  int FLOAT_LITERAL = 19;
   /** RegularExpression Id. */
-  int HEX_LITERAL = 20;
+  int DECIMAL_LITERAL = 20;
   /** RegularExpression Id. */
-  int OCTAL_LITERAL = 21;
+  int HEX_LITERAL = 21;
   /** RegularExpression Id. */
-  int PRIMITIVE_TYPE = 22;
+  int OCTAL_LITERAL = 22;
   /** RegularExpression Id. */
-  int INT = 23;
+  int PRIMITIVE_TYPE = 23;
   /** RegularExpression Id. */
-  int CHAR = 24;
+  int INT = 24;
   /** RegularExpression Id. */
-  int FLOAT = 25;
+  int CHAR = 25;
   /** RegularExpression Id. */
-  int BOOL = 26;
+  int FLOAT = 26;
   /** RegularExpression Id. */
-  int VOID = 27;
+  int BOOL = 27;
   /** RegularExpression Id. */
-  int IDENTIFIER = 28;
+  int VOID = 28;
   /** RegularExpression Id. */
-  int LETTER = 29;
+  int IDENTIFIER = 29;
   /** RegularExpression Id. */
-  int DIGIT = 30;
+  int LETTER = 30;
+  /** RegularExpression Id. */
+  int DIGIT = 31;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -74,6 +76,7 @@ public interface LittleJavaConstants {
     "\"continue\"",
     "\"else\"",
     "\"false\"",
+    "\"for\"",
     "\"if\"",
     "\"return\"",
     "\"static\"",

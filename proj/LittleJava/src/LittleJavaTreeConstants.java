@@ -7,25 +7,28 @@ public interface LittleJavaTreeConstants
   public int JJTMEMBERVARIABLEDECLARATION = 3;
   public int JJTMEMBERFUNCTIONDECLARATION = 4;
   public int JJTTYPE = 5;
-  public int JJTBLOCKSTATEMENT = 6;
-  public int JJTRETURNSTATEMENT = 7;
-  public int JJTBREAKSTATEMENT = 8;
-  public int JJTCONTINUESTATEMENT = 9;
-  public int JJTLOCALVARIABLEDECLARATIONSTATEMENT = 10;
+  public int JJTRETURNSTATEMENT = 6;
+  public int JJTBREAKSTATEMENT = 7;
+  public int JJTCONTINUESTATEMENT = 8;
+  public int JJTBLOCKSTATEMENT = 9;
+  public int JJTLOCALVARIABLEDECLARATION = 10;
   public int JJTIFSTATEMENT = 11;
   public int JJTIFCONDITIONSECTION = 12;
-  public int JJTIFMAINSECTION = 13;
+  public int JJTIFEXECUTESECTION = 13;
   public int JJTIFELSESECTION = 14;
   public int JJTWHILESTATEMENT = 15;
-  public int JJTASSIGNEXPR = 16;
-  public int JJTOREXPR = 17;
-  public int JJTANDEXPR = 18;
-  public int JJTEQUEXPR = 19;
-  public int JJTRELEXPR = 20;
-  public int JJTADDEXPR = 21;
-  public int JJTMULEXPR = 22;
-  public int JJTRIGHTHANDVALUE = 23;
-  public int JJTLEFTHANDVALUE = 24;
+  public int JJTFORSTATEMENT = 16;
+  public int JJTFORINITSECTION = 17;
+  public int JJTFOREXECUTESECTION = 18;
+  public int JJTASSIGNEXPR = 19;
+  public int JJTOREXPR = 20;
+  public int JJTANDEXPR = 21;
+  public int JJTEQUEXPR = 22;
+  public int JJTRELEXPR = 23;
+  public int JJTADDEXPR = 24;
+  public int JJTMULEXPR = 25;
+  public int JJTRIGHTHANDVALUE = 26;
+  public int JJTLEFTHANDVALUE = 27;
 
 
   public String[] jjtNodeName = {
@@ -35,16 +38,19 @@ public interface LittleJavaTreeConstants
     "MemberVariableDeclaration",
     "MemberFunctionDeclaration",
     "Type",
-    "BlockStatement",
     "ReturnStatement",
     "BreakStatement",
     "ContinueStatement",
-    "LocalVariableDeclarationStatement",
+    "BlockStatement",
+    "LocalVariableDeclaration",
     "IfStatement",
     "IfConditionSection",
-    "IfMainSection",
+    "IfExecuteSection",
     "IfElseSection",
     "WhileStatement",
+    "ForStatement",
+    "ForInitSection",
+    "ForExecuteSection",
     "AssignExpr",
     "OrExpr",
     "AndExpr",
@@ -56,4 +62,4 @@ public interface LittleJavaTreeConstants
     "LeftHandValue",
   };
 }
-/* JavaCC - OriginalChecksum=4e660d13acc7cb110e32ffbbd275859e (do not edit this line) */
+/* JavaCC - OriginalChecksum=7a5441241321b5570a11d97f8b34e990 (do not edit this line) */
