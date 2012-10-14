@@ -8,11 +8,19 @@ public class JaccParser {
   public static void main(String args[]) {
     JaccParser parser;
     try {
-      parser = new JaccParser(new java.io.FileInputStream("./quicksort.littlejava"));
+      parser = new JaccParser(new java.io.FileInputStream("./test.littlejava"));
     } catch (FileNotFoundException e) {
       e.printStackTrace();
       return ;
     }
+    try {
+      parser.Program();
+      System.out.println("program parsed successfully.");
+    } catch (ParseException e) {
+      System.out.println(e.getMessage());
+      System.out.println("Encountered errors during parse.");
+    }
+	/*
     while(true){
       Token tk = parser.token_source.getNextToken();
       int res=tk.kind;
@@ -21,7 +29,12 @@ public class JaccParser {
         { System.out.println("end of the file!"); break;}
       System.out.println(res + ": "+ image);
     }
+	*/
   }
+  /*
+  public static void log(String s){
+    System.out.println(String s);
+  }*/
 }
 
 PARSER_END(JaccParser)
@@ -144,7 +157,12 @@ TOKEN :
 /*grammer grammer grammer grammer*/
 /*grammer grammer grammer grammer*/
 /*grammer grammer grammer grammer*/
-
+/*
+|
+  Type() <IDENTIFIER> ";"
+|
+  Type() <IDENTIFIER> "=" Expr() ";" 
+*/
 void Program() :
 {}
 {
@@ -155,5 +173,24 @@ void Program() :
 void ClassDecl() :
 {}
 {
-  "class" <IDENTIFIER> ";"
+  "class" <IDENTIFIER> "{" ( VarDecl() )* "}"  
+}
+
+void VarDecl() :
+{ System.out.println("var"); }
+{
+  Type() <IDENTIFIER> (";" {System.out.println("short");} | "=" Expr() ";" )
+   {System.out.println("end");} 
+}
+
+void Type() :
+{}
+{
+  "int"
+}
+
+void Expr() :
+{}
+{
+  <DECIMAL_LITERAL>
 }

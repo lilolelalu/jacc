@@ -1,0 +1,2 @@
+copy *.java ..\src\
+del *.*~
