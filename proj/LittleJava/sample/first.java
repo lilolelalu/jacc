@@ -1,7 +1,7 @@
 class hello{
 	int i;
 	static int j;
-	static void main(){
+	static void main(String argv){
 		{
 			int k = 1;
 			int c = j * k;
@@ -19,6 +19,13 @@ class hello{
 			i = i + 1;
 		}
 	}
-	void test(){
+	void h_asdf(){
+		int s = 0;
+		for (int i = 0; i < 10; i = i + 1)
+			for (int j = 0; j < 10; j = j + 1){
+				s = s + i + j;
+			}
+	}
+	void test(int i, int j){
 	}
 }

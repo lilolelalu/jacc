@@ -29,6 +29,8 @@ public interface LittleJavaTreeConstants
   public int JJTMULEXPR = 25;
   public int JJTRIGHTHANDVALUE = 26;
   public int JJTLEFTHANDVALUE = 27;
+  public int JJTARGUMENTLIST = 28;
+  public int JJTPARAMETERLIST = 29;
 
 
   public String[] jjtNodeName = {
@@ -60,6 +62,8 @@ public interface LittleJavaTreeConstants
     "MulExpr",
     "RightHandValue",
     "LeftHandValue",
+    "ArgumentList",
+    "ParameterList",
   };
 }
-/* JavaCC - OriginalChecksum=7a5441241321b5570a11d97f8b34e990 (do not edit this line) */
+/* JavaCC - OriginalChecksum=321ab6519406a0134fc76ed08a3eec19 (do not edit this line) */

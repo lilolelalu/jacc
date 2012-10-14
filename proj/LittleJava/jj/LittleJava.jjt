@@ -176,7 +176,7 @@ void VarDecl()#void : {}
 
 void MethodDecl()#void : {}
 {
-	"(" ")" "{" ( Statement() ) * "}"
+	"(" ( ParameterList() ) ?  ")" "{" ( Statement() ) * "}"
 }
 
 void Type(): {}
@@ -307,5 +307,13 @@ void LeftHandValue(): {}
 	<IDENTIFIER>
 }
 
+void ArgumentList(): {}
+{
+	<IDENTIFIER> ( ","  <IDENTIFIER> ) *
+}
 
+void ParameterList(): {}
+{
+	Type() <IDENTIFIER> ( ","  Type() <IDENTIFIER> ) *
+}
 

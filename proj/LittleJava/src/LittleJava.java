@@ -213,6 +213,15 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
 
   static final public void MethodDecl() throws ParseException {
     jj_consume_token(36);
+    switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+    case PRIMITIVE_TYPE:
+    case IDENTIFIER:
+      ParameterList();
+      break;
+    default:
+      jj_la1[5] = jj_gen;
+      ;
+    }
     jj_consume_token(37);
     jj_consume_token(32);
     label_3:
@@ -237,7 +246,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         ;
         break;
       default:
-        jj_la1[5] = jj_gen;
+        jj_la1[6] = jj_gen;
         break label_3;
       }
       Statement();
@@ -261,7 +270,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
             ;
             break;
           default:
-            jj_la1[6] = jj_gen;
+            jj_la1[7] = jj_gen;
             break label_4;
           }
           jj_consume_token(38);
@@ -277,7 +286,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
             ;
             break;
           default:
-            jj_la1[7] = jj_gen;
+            jj_la1[8] = jj_gen;
             break label_5;
           }
           jj_consume_token(38);
@@ -285,7 +294,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         }
         break;
       default:
-        jj_la1[8] = jj_gen;
+        jj_la1[9] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -365,7 +374,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       ForStatement();
       break;
     default:
-      jj_la1[9] = jj_gen;
+      jj_la1[10] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -399,7 +408,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           ;
           break;
         default:
-          jj_la1[10] = jj_gen;
+          jj_la1[11] = jj_gen;
           break label_6;
         }
         Statement();
@@ -435,7 +444,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         LocalVariableDeclaration();
         break;
       default:
-        jj_la1[11] = jj_gen;
+        jj_la1[12] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -456,7 +465,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         Expr();
         break;
       default:
-        jj_la1[12] = jj_gen;
+        jj_la1[13] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -566,7 +575,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         }
         break;
       default:
-        jj_la1[13] = jj_gen;
+        jj_la1[14] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -647,7 +656,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           ExpressionDeclaration();
           break;
         default:
-          jj_la1[14] = jj_gen;
+          jj_la1[15] = jj_gen;
           ;
         }
         jj_consume_token(34);
@@ -663,7 +672,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           Expr();
           break;
         default:
-          jj_la1[15] = jj_gen;
+          jj_la1[16] = jj_gen;
           ;
         }
         jj_consume_token(34);
@@ -679,7 +688,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           AssignExpr();
           break;
         default:
-          jj_la1[16] = jj_gen;
+          jj_la1[17] = jj_gen;
           ;
         }
         jj_consume_token(37);
@@ -792,7 +801,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         OrExpr();
         break;
       default:
-        jj_la1[17] = jj_gen;
+        jj_la1[18] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -812,7 +821,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           ;
           break;
         default:
-          jj_la1[18] = jj_gen;
+          jj_la1[19] = jj_gen;
           break label_7;
         }
         jj_consume_token(40);
@@ -852,7 +861,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           ;
           break;
         default:
-          jj_la1[19] = jj_gen;
+          jj_la1[20] = jj_gen;
           break label_8;
         }
         jj_consume_token(41);
@@ -893,7 +902,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           ;
           break;
         default:
-          jj_la1[20] = jj_gen;
+          jj_la1[21] = jj_gen;
           break label_9;
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -904,7 +913,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           jj_consume_token(43);
           break;
         default:
-          jj_la1[21] = jj_gen;
+          jj_la1[22] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -947,7 +956,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           ;
           break;
         default:
-          jj_la1[22] = jj_gen;
+          jj_la1[23] = jj_gen;
           break label_10;
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -964,7 +973,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           jj_consume_token(47);
           break;
         default:
-          jj_la1[23] = jj_gen;
+          jj_la1[24] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -1005,7 +1014,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           ;
           break;
         default:
-          jj_la1[24] = jj_gen;
+          jj_la1[25] = jj_gen;
           break label_11;
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1016,7 +1025,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           jj_consume_token(49);
           break;
         default:
-          jj_la1[25] = jj_gen;
+          jj_la1[26] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -1058,7 +1067,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           ;
           break;
         default:
-          jj_la1[26] = jj_gen;
+          jj_la1[27] = jj_gen;
           break label_12;
         }
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1072,7 +1081,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
           jj_consume_token(52);
           break;
         default:
-          jj_la1[27] = jj_gen;
+          jj_la1[28] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -1111,7 +1120,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         jj_consume_token(53);
         break;
       default:
-        jj_la1[28] = jj_gen;
+        jj_la1[29] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1132,7 +1141,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       LeftHandValue();
       break;
     default:
-      jj_la1[29] = jj_gen;
+      jj_la1[30] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -1162,7 +1171,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         jj_consume_token(FLOAT_LITERAL);
         break;
       default:
-        jj_la1[30] = jj_gen;
+        jj_la1[31] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1187,6 +1196,76 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     }
   }
 
+  static final public void ArgumentList() throws ParseException {
+                      /*@bgen(jjtree) ArgumentList */
+  ASTArgumentList jjtn000 = new ASTArgumentList(JJTARGUMENTLIST);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+    try {
+      jj_consume_token(IDENTIFIER);
+      label_13:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case 54:
+          ;
+          break;
+        default:
+          jj_la1[32] = jj_gen;
+          break label_13;
+        }
+        jj_consume_token(54);
+        jj_consume_token(IDENTIFIER);
+      }
+    } finally {
+          if (jjtc000) {
+            jjtree.closeNodeScope(jjtn000, true);
+          }
+    }
+  }
+
+  static final public void ParameterList() throws ParseException {
+                       /*@bgen(jjtree) ParameterList */
+  ASTParameterList jjtn000 = new ASTParameterList(JJTPARAMETERLIST);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+    try {
+      Type();
+      jj_consume_token(IDENTIFIER);
+      label_14:
+      while (true) {
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case 54:
+          ;
+          break;
+        default:
+          jj_la1[33] = jj_gen;
+          break label_14;
+        }
+        jj_consume_token(54);
+        Type();
+        jj_consume_token(IDENTIFIER);
+      }
+    } catch (Throwable jjte000) {
+          if (jjtc000) {
+            jjtree.clearNodeScope(jjtn000);
+            jjtc000 = false;
+          } else {
+            jjtree.popNode();
+          }
+          if (jjte000 instanceof RuntimeException) {
+            {if (true) throw (RuntimeException)jjte000;}
+          }
+          if (jjte000 instanceof ParseException) {
+            {if (true) throw (ParseException)jjte000;}
+          }
+          {if (true) throw (Error)jjte000;}
+    } finally {
+          if (jjtc000) {
+            jjtree.closeNodeScope(jjtn000, true);
+          }
+    }
+  }
+
   static private boolean jj_2_1(int xla) {
     jj_la = xla; jj_lastpos = jj_scanpos = token;
     try { return !jj_3_1(); }
@@ -1201,8 +1280,18 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     finally { jj_save(1, xla); }
   }
 
-  static private boolean jj_3R_19() {
+  static private boolean jj_3R_21() {
     if (jj_scan_token(40)) return true;
+    return false;
+  }
+
+  static private boolean jj_3R_24() {
+    if (jj_3R_26()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_27()) { jj_scanpos = xsp; break; }
+    }
     return false;
   }
 
@@ -1216,22 +1305,12 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     return false;
   }
 
-  static private boolean jj_3R_20() {
-    if (jj_3R_22()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_23()) { jj_scanpos = xsp; break; }
-    }
+  static private boolean jj_3R_35() {
+    if (jj_3R_16()) return true;
     return false;
   }
 
-  static private boolean jj_3R_33() {
-    if (jj_3R_14()) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_29() {
+  static private boolean jj_3R_31() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_scan_token(50)) {
@@ -1245,26 +1324,26 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   }
 
   static private boolean jj_3_1() {
-    if (jj_3R_13()) return true;
+    if (jj_3R_15()) return true;
     return false;
   }
 
-  static private boolean jj_3R_14() {
+  static private boolean jj_3R_16() {
     if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
-  static private boolean jj_3R_18() {
-    if (jj_3R_20()) return true;
+  static private boolean jj_3R_20() {
+    if (jj_3R_22()) return true;
     Token xsp;
     while (true) {
       xsp = jj_scanpos;
-      if (jj_3R_21()) { jj_scanpos = xsp; break; }
+      if (jj_3R_23()) { jj_scanpos = xsp; break; }
     }
     return false;
   }
 
-  static private boolean jj_3R_34() {
+  static private boolean jj_3R_36() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_scan_token(16)) {
@@ -1280,7 +1359,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     return false;
   }
 
-  static private boolean jj_3R_27() {
+  static private boolean jj_3R_29() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_scan_token(48)) {
@@ -1290,49 +1369,49 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     return false;
   }
 
-  static private boolean jj_3R_17() {
-    if (jj_3R_18()) return true;
+  static private boolean jj_3R_19() {
+    if (jj_3R_20()) return true;
     Token xsp;
     while (true) {
       xsp = jj_scanpos;
-      if (jj_3R_19()) { jj_scanpos = xsp; break; }
+      if (jj_3R_21()) { jj_scanpos = xsp; break; }
     }
     return false;
   }
 
-  static private boolean jj_3R_30() {
+  static private boolean jj_3R_32() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_scan_token(49)) {
     jj_scanpos = xsp;
     if (jj_scan_token(53)) return true;
     }
-    if (jj_3R_28()) return true;
+    if (jj_3R_30()) return true;
     return false;
   }
 
-  static private boolean jj_3R_28() {
+  static private boolean jj_3R_30() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_30()) {
-    jj_scanpos = xsp;
-    if (jj_3R_31()) {
-    jj_scanpos = xsp;
     if (jj_3R_32()) {
     jj_scanpos = xsp;
-    if (jj_3R_33()) return true;
+    if (jj_3R_33()) {
+    jj_scanpos = xsp;
+    if (jj_3R_34()) {
+    jj_scanpos = xsp;
+    if (jj_3R_35()) return true;
     }
     }
     }
     return false;
   }
 
-  static private boolean jj_3R_16() {
-    if (jj_3R_17()) return true;
+  static private boolean jj_3R_18() {
+    if (jj_3R_19()) return true;
     return false;
   }
 
-  static private boolean jj_3R_25() {
+  static private boolean jj_3R_27() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_scan_token(44)) {
@@ -1348,39 +1427,54 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     return false;
   }
 
-  static private boolean jj_3R_15() {
+  static private boolean jj_3R_17() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_3_2()) {
     jj_scanpos = xsp;
-    if (jj_3R_16()) return true;
+    if (jj_3R_18()) return true;
     }
     return false;
   }
 
   static private boolean jj_3_2() {
-    if (jj_3R_14()) return true;
+    if (jj_3R_16()) return true;
     if (jj_scan_token(35)) return true;
     return false;
   }
 
-  static private boolean jj_3R_32() {
-    if (jj_3R_34()) return true;
+  static private boolean jj_3R_34() {
+    if (jj_3R_36()) return true;
     return false;
   }
 
-  static private boolean jj_3R_13() {
-    if (jj_3R_15()) return true;
+  static private boolean jj_3R_15() {
+    if (jj_3R_17()) return true;
     return false;
   }
 
-  static private boolean jj_3R_23() {
+  static private boolean jj_3R_25() {
     Token xsp;
     xsp = jj_scanpos;
     if (jj_scan_token(42)) {
     jj_scanpos = xsp;
     if (jj_scan_token(43)) return true;
     }
+    return false;
+  }
+
+  static private boolean jj_3R_28() {
+    if (jj_3R_30()) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_31()) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
+  static private boolean jj_3R_23() {
+    if (jj_scan_token(41)) return true;
     return false;
   }
 
@@ -1394,24 +1488,9 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     return false;
   }
 
-  static private boolean jj_3R_21() {
-    if (jj_scan_token(41)) return true;
-    return false;
-  }
-
-  static private boolean jj_3R_24() {
-    if (jj_3R_26()) return true;
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_27()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
-  static private boolean jj_3R_31() {
+  static private boolean jj_3R_33() {
     if (jj_scan_token(36)) return true;
-    if (jj_3R_13()) return true;
+    if (jj_3R_15()) return true;
     return false;
   }
 
@@ -1427,7 +1506,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   static private Token jj_scanpos, jj_lastpos;
   static private int jj_la;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[31];
+  static final private int[] jj_la1 = new int[34];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -1435,10 +1514,10 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x100,0x20808000,0x8000,0x0,0x0,0x208f7a80,0x0,0x0,0x20800000,0x208f7a80,0x208f7a80,0x20800000,0x0,0x400,0x208d0800,0x200d0800,0x200d0800,0x200d0800,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x200d0800,0xd0800,};
+      jj_la1_0 = new int[] {0x100,0x20808000,0x8000,0x0,0x0,0x20800000,0x208f7a80,0x0,0x0,0x20800000,0x208f7a80,0x208f7a80,0x20800000,0x0,0x400,0x208d0800,0x200d0800,0x200d0800,0x200d0800,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x200d0800,0xd0800,0x0,0x0,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,0x1c,0xc,0x220011,0x40,0x40,0x0,0x220011,0x220011,0x0,0x8,0x0,0x220010,0x220010,0x220010,0x220010,0x100,0x200,0xc00,0xc00,0xf000,0xf000,0x30000,0x30000,0x1c0000,0x1c0000,0x220000,0x220010,0x0,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x1c,0xc,0x0,0x220011,0x40,0x40,0x0,0x220011,0x220011,0x0,0x8,0x0,0x220010,0x220010,0x220010,0x220010,0x100,0x200,0xc00,0xc00,0xf000,0xf000,0x30000,0x30000,0x1c0000,0x1c0000,0x220000,0x220010,0x0,0x400000,0x400000,};
    }
   static final private JJCalls[] jj_2_rtns = new JJCalls[2];
   static private boolean jj_rescan = false;
@@ -1462,7 +1541,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 34; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1478,7 +1557,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 34; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1496,7 +1575,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 34; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1508,7 +1587,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 34; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1525,7 +1604,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 34; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1536,7 +1615,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 31; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 34; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1648,12 +1727,12 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[54];
+    boolean[] la1tokens = new boolean[55];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 31; i++) {
+    for (int i = 0; i < 34; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -1665,7 +1744,7 @@ public class LittleJava/*@bgen(jjtree)*/implements LittleJavaTreeConstants, Litt
         }
       }
     }
-    for (int i = 0; i < 54; i++) {
+    for (int i = 0; i < 55; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
