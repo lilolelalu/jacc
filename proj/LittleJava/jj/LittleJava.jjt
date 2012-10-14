@@ -79,13 +79,29 @@ SKIP :
 | <"/*" (~["*"])* "*" (~["/"] (~["*"])* "*")* "/">
 }
 
-/*
-TOKEN : 
+
+TOKEN : // RESERVED WORDS
 {
-	"class"
+	< CLASS_DEF: "class" >
 |
-	"static"
-}*/
+	< STATIC_MOD: "static" >
+|
+	< IF: "if" >
+|
+	< ELSE: "else" >
+|
+	< WHILE: "while" >
+|
+	< BREAK: "break" >
+|
+	< CONTINUE: "continue" >
+|
+	< TRUE: "true" >
+|
+	< FALSE: "false" >
+|
+	< RETURN: "return" >
+}
 
 TOKEN : /* LITERALS */
 {
@@ -94,6 +110,8 @@ TOKEN : /* LITERALS */
       | <HEX_LITERAL> (["l","L"])?
       | <OCTAL_LITERAL> (["l","L"])?
   >
+|
+  < FLOAT_LITERAL: <DECIMAL_LITERAL> "." <DECIMAL_LITERAL> (["f", "F"])? >
 |
   < #DECIMAL_LITERAL: ["1"-"9"] (["0"-"9"])* >
 |
@@ -156,7 +174,7 @@ void VarDecl(): {}
 
 void MethodDecl(): {}
 {
-	"(" ")" "{" Statement() * "}"
+	"(" ")" "{" ( Statement() ) * "}"
 }
 
 void Type(): {}
@@ -166,47 +184,110 @@ void Type(): {}
 
 void Statement() #void : {}
 {
-	"{" Statement()* "}" #Block 
+	"{" ( Statement() ) * "}" #BlockStatement 
 | 
 	"return" Expr() ";" #ReturnStatement 
 |
-	"break" ";" 
+	"break" ";" #BreakStatement
 |
-	"continue" ";"
+	"continue" ";" #ContinueStatement
 |
-	AssignExpr()
+	OrExpr() ";"
 |
 	IfStatement() 
 | 
-	WhileStatement() | ForStatement() | 
+	WhileStatement() 
+/*|
+	ForStatement()*/
 }
 
-void Expr() #void : {
-	AssignExpr()
+void IfStatement(): {}
+{
+	"if" "(" Expr() ")" Statement() /*( "else" Statement() ) ?*/
 }
 
-void OrExpr() #void : {
-	AndExpr() ( "||" AndExpr() ) * #OrExpr(>1)
+void WhileStatement(): {}
+{
+	"while" "(" Expr() ")" Statement()
 }
 
-void AndExpr() #void : {
-	EquExpr() ( "&&" EquExpr() ) * #AndExpr(>1)
+void Expr() #void : {}
+{
+	OrExpr()
 }
 
-void EquExpr() #void : {
-	RelExpr() ( ( "==" | "!=" ) RelExpr() ) * #EquExpr(>1)
+/*void AssignExpr() #void : {}
+{
+	//LeftHandValue() "=" AssignExpr() #AssignExpr | OrExpr()
+	LeftHandValue() AssignExprFurther() | RightHandValue()
 }
 
-void RelExpr() #void : {
-	AndExpr() ( ( "<" | "<=" | ">" | ">=" ) AddExpr() ) * #RelExpr(>1)
+void AssignExprFurther() #void: {}
+{
+	( "=" AssignExpr() ) * #AssignExpr(>1) | 
+}*/
+
+void OrExpr() #void : {}
+{
+	( 
+		AndExpr() ( "||" AndExpr() ) * 
+	) #OrExpr(>1)
 }
 
-void AddExpr() #void : {
-	MulExpr() ( ( "+" | "-" ) MulExpr() ) * #AddExpr(>1)
+void AndExpr() #void : {}
+{
+	(
+		EquExpr() ( "&&" EquExpr() ) * 
+	) #AndExpr(>1)
 }
 
-void MulExpr() #void : {
-	UnaryExpr() ( ( "*" | "/" | "%" ) UnaryExpr() ) * #MulExpr(>1)
+void EquExpr() #void : {}
+{
+	(
+		RelExpr() ( ( "==" | "!=" ) RelExpr() ) * 
+	) #EquExpr(>1)
 }
+
+void RelExpr() #void : {}
+{
+	(
+		AddExpr() ( ( "<" | "<=" | ">" | ">=" ) AddExpr() ) * 
+	) #RelExpr(>1)
+}
+
+void AddExpr() #void : {}
+{
+	(
+		MulExpr() ( ( "+" | "-" ) MulExpr() ) * 
+	) #AddExpr(>1)
+}
+
+void MulExpr() #void : {}
+{
+	(
+		UnaryExpr() ( ( "*" | "/" | "%" ) UnaryExpr() ) * 
+	) #MulExpr(>1)
+}
+
+void UnaryExpr() #void : {} 
+{
+	( "-" | "!" ) UnaryExpr() | "(" Expr() ")" | RightHandValue() | LeftHandValue()
+}
+
+/*void VarExpr()#void: {}
+{
+	RightHandValue() | LeftHandValue()
+}*/
+
+void RightHandValue(): {}
+{
+	"true" | "false" | <INTEGER_LITERAL> | <FLOAT_LITERAL> 
+}
+
+void LeftHandValue(): {}
+{
+	<IDENTIFIER>
+}
+
 
 

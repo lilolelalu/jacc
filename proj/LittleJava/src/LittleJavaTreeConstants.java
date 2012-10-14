@@ -7,6 +7,20 @@ public interface LittleJavaTreeConstants
   public int JJTVARDECL = 3;
   public int JJTMETHODDECL = 4;
   public int JJTTYPE = 5;
+  public int JJTBLOCKSTATEMENT = 6;
+  public int JJTRETURNSTATEMENT = 7;
+  public int JJTBREAKSTATEMENT = 8;
+  public int JJTCONTINUESTATEMENT = 9;
+  public int JJTIFSTATEMENT = 10;
+  public int JJTWHILESTATEMENT = 11;
+  public int JJTOREXPR = 12;
+  public int JJTANDEXPR = 13;
+  public int JJTEQUEXPR = 14;
+  public int JJTRELEXPR = 15;
+  public int JJTADDEXPR = 16;
+  public int JJTMULEXPR = 17;
+  public int JJTRIGHTHANDVALUE = 18;
+  public int JJTLEFTHANDVALUE = 19;
 
 
   public String[] jjtNodeName = {
@@ -16,6 +30,20 @@ public interface LittleJavaTreeConstants
     "VarDecl",
     "MethodDecl",
     "Type",
+    "BlockStatement",
+    "ReturnStatement",
+    "BreakStatement",
+    "ContinueStatement",
+    "IfStatement",
+    "WhileStatement",
+    "OrExpr",
+    "AndExpr",
+    "EquExpr",
+    "RelExpr",
+    "AddExpr",
+    "MulExpr",
+    "RightHandValue",
+    "LeftHandValue",
   };
 }
-/* JavaCC - OriginalChecksum=00ca16b0df48583456adcae8d04dad24 (do not edit this line) */
+/* JavaCC - OriginalChecksum=4a06499e5738c9bd135979262f4db343 (do not edit this line) */

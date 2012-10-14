@@ -9,35 +9,53 @@ public interface LittleJavaConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int CLASS = 7;
+  int CLASS_DEF = 7;
   /** RegularExpression Id. */
-  int STATIC = 8;
+  int STATIC_MOD = 8;
   /** RegularExpression Id. */
-  int INTEGER_LITERAL = 9;
+  int IF = 9;
   /** RegularExpression Id. */
-  int DECIMAL_LITERAL = 10;
+  int ELSE = 10;
   /** RegularExpression Id. */
-  int HEX_LITERAL = 11;
+  int WHILE = 11;
   /** RegularExpression Id. */
-  int OCTAL_LITERAL = 12;
+  int BREAK = 12;
   /** RegularExpression Id. */
-  int PRIMITIVE_TYPE = 13;
+  int CONTINUE = 13;
   /** RegularExpression Id. */
-  int INT = 14;
+  int TRUE = 14;
   /** RegularExpression Id. */
-  int CHAR = 15;
+  int FALSE = 15;
   /** RegularExpression Id. */
-  int FLOAT = 16;
+  int RETURN = 16;
   /** RegularExpression Id. */
-  int BOOL = 17;
+  int INTEGER_LITERAL = 17;
   /** RegularExpression Id. */
-  int VOID = 18;
+  int FLOAT_LITERAL = 18;
   /** RegularExpression Id. */
-  int IDENTIFIER = 19;
+  int DECIMAL_LITERAL = 19;
   /** RegularExpression Id. */
-  int LETTER = 20;
+  int HEX_LITERAL = 20;
   /** RegularExpression Id. */
-  int DIGIT = 21;
+  int OCTAL_LITERAL = 21;
+  /** RegularExpression Id. */
+  int PRIMITIVE_TYPE = 22;
+  /** RegularExpression Id. */
+  int INT = 23;
+  /** RegularExpression Id. */
+  int CHAR = 24;
+  /** RegularExpression Id. */
+  int FLOAT = 25;
+  /** RegularExpression Id. */
+  int BOOL = 26;
+  /** RegularExpression Id. */
+  int VOID = 27;
+  /** RegularExpression Id. */
+  int IDENTIFIER = 28;
+  /** RegularExpression Id. */
+  int LETTER = 29;
+  /** RegularExpression Id. */
+  int DIGIT = 30;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -53,7 +71,16 @@ public interface LittleJavaConstants {
     "<token of kind 6>",
     "\"class\"",
     "\"static\"",
+    "\"if\"",
+    "\"else\"",
+    "\"while\"",
+    "\"break\"",
+    "\"continue\"",
+    "\"true\"",
+    "\"false\"",
+    "\"return\"",
     "<INTEGER_LITERAL>",
+    "<FLOAT_LITERAL>",
     "<DECIMAL_LITERAL>",
     "<HEX_LITERAL>",
     "<OCTAL_LITERAL>",
@@ -69,10 +96,25 @@ public interface LittleJavaConstants {
     "\"{\"",
     "\"}\"",
     "\";\"",
+    "\"=\"",
     "\"(\"",
     "\")\"",
     "\"[\"",
     "\"]\"",
+    "\"||\"",
+    "\"&&\"",
+    "\"==\"",
+    "\"!=\"",
+    "\"<\"",
+    "\"<=\"",
+    "\">\"",
+    "\">=\"",
+    "\"+\"",
+    "\"-\"",
+    "\"*\"",
+    "\"/\"",
+    "\"%\"",
+    "\"!\"",
   };
 
 }
