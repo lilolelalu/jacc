@@ -3,8 +3,8 @@ class hello{
 	static int j;
 	static void main(String argv){
 		{
-			int k = 1;
-			int c = j * k;
+			int[][][] k = 1;
+			int[] c = j * k;
 		}
 		int i = 1;
 		int s = 0;
