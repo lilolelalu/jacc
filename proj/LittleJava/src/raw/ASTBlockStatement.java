@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTBlockStatement extends SimpleNode {
+class ASTBlockStatement extends LittleJavaNode {
   public ASTBlockStatement(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTBlockStatement extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=db988b2e9094ed717c8d156b4d73586d (do not edit this line) */
+/* JavaCC - OriginalChecksum=6563bc877452830a36dc45f802ed4cc9 (do not edit this line) */

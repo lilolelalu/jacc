@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTWhileStatement extends SimpleNode {
+class ASTWhileStatement extends LittleJavaNode {
   public ASTWhileStatement(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTWhileStatement extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=2da484744d4753d31c8b2037387c70f6 (do not edit this line) */
+/* JavaCC - OriginalChecksum=2b32617611098ebc18c234d6b9d1fbe1 (do not edit this line) */

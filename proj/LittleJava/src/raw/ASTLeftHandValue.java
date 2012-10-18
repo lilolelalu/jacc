@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTLeftHandValue extends SimpleNode {
+class ASTLeftHandValue extends LittleJavaNode {
   public ASTLeftHandValue(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTLeftHandValue extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=6cf4f1e44ff4cc20452576b4ca4641fd (do not edit this line) */
+/* JavaCC - OriginalChecksum=aeb8eb760a335ceb694215fc0a3a08d2 (do not edit this line) */

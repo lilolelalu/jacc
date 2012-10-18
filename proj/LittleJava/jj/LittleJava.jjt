@@ -30,7 +30,8 @@
 options {
   MULTI=true;
   KEEP_LINE_COLUMN = true;
-  VISITOR=true;
+  VISITOR = true;
+  NODE_CLASS = "LittleJavaNode";
 }
 
 PARSER_BEGIN(LittleJava)
@@ -151,7 +152,7 @@ TOKEN : /* IDENTIFIERS */
 /** Main production. */
 ASTStart Start() : {}
 {
-	/** ( ImportSection() )* */ ( ClassDecl() )*
+	/** ( ImportSection() )* */ ( ClassDecl() )*<EOF>
 	{
 		return jjtThis; 
 	}
@@ -161,29 +162,39 @@ ASTStart Start() : {}
 {
 }*/
 
-void ClassDecl(): {}
+void ClassDecl(): 
 {
-	"class" <IDENTIFIER> "{" ( Decl() ) * "}"
+	Token t;
+}
+{
+	"class" t = <IDENTIFIER> { jjtThis.SetValue(t.image); } "{" 
+		( 
+			LOOKAHEAD(5, [ "static" ] Type() <IDENTIFIER> ( ";" | "=" ) ) MemberVariableDeclaration() 
+		| 
+			MemberFunctionDeclaration() 
+		) * 
+	"}"
 }
 
-void Decl() : {}
+void MemberVariableDeclaration() : {}
 {
-	( "static" ) ? Type() <IDENTIFIER> ( VarDecl() #MemberVariableDeclaration | MethodDecl() #MemberFunctionDeclaration )
+	[ "static" ] Type() <IDENTIFIER> ";" | "=" Expr() ";"
 }
 
-void VarDecl()#void : {}
+void MemberFunctionDeclaration() : {}
 {
-	";" | "=" Expr() ";"
+	[ "static" ] Type() <IDENTIFIER> "(" [ ParameterList() ]  ")" "{" ( Statement() ) * "}"
 }
 
-void MethodDecl()#void : {}
+void Type(): 
 {
-	"(" ( ParameterList() ) ?  ")" "{" ( Statement() ) * "}"
+	Token t;
+	String s = "";
 }
-
-void Type() #void: {}
 {
-	<PRIMITIVE_TYPE> ( "[" "]" ) * | <IDENTIFIER> ( "[" "]" ) *
+	( t = <PRIMITIVE_TYPE> ( "[" "]" { s += "[]"; } ) * |  t = <IDENTIFIER> ( "[" "]" { s += "[]"; }) * )
+	{ jjtThis.SetValue(t.image + s); }
+	
 }
 
 void Statement() #void : {}
@@ -218,12 +229,12 @@ void ExpressionDeclaration() #void: {}
 
 void LocalVariableDeclaration(): {}
 {
-	Type() <IDENTIFIER> ( "=" Expr() ) ?
+	Type() <IDENTIFIER> [ "=" Expr() ]
 }
 
 void IfStatement(): {}
 {
-	"if" "(" Expr() #IfConditionSection ")" ( Statement() #IfExecuteSection ) ( "else" Statement() #IfElseSection ) ?
+	"if" "(" Expr() #IfConditionSection ")" ( Statement() #IfExecuteSection ) [ LOOKAHEAD(1) "else" Statement() #IfElseSection ]
 }
 
 void WhileStatement(): {}
@@ -233,7 +244,7 @@ void WhileStatement(): {}
 
 void ForStatement(): {}
 {
-	"for" ( "(" ( ExpressionDeclaration() ) ? ";"  ( Expr() ) ? ";" ( AssignExpr() ) ? ")" ) #ForInitSection Statement() #ForExecuteSection
+	"for" ( "(" [ ExpressionDeclaration() ] ";"  [ Expr() ] ";" [ AssignExpr() ] ")" ) #ForInitSection Statement() #ForExecuteSection
 }
 
 void Expr() #void : {}
@@ -294,19 +305,24 @@ void UnaryExpr() #void : {}
 	( "-" | "!" ) UnaryExpr() | "(" Expr() ")" | RightHandValue() | LeftHandValue()
 }
 
-/*void VarExpr()#void: {}
+/*void VarExpr() #void: {}
 {
 	RightHandValue() | LeftHandValue()
 }*/
 
-void RightHandValue(): {}
+void RightHandValue(): {
+	Token t;
+}
 {
-	"true" | "false" | <INTEGER_LITERAL> | <FLOAT_LITERAL> 
+	( t = "true" | t = "false" | t = <INTEGER_LITERAL> | t = <FLOAT_LITERAL> ) 
+	{ jjtThis.SetValue(t.image); } 
 }
 
-void LeftHandValue(): {}
+void LeftHandValue(): {
+	Token t;
+}
 {
-	<IDENTIFIER>
+	t = <IDENTIFIER> { jjtThis.SetValue(t.image); }
 }
 
 void ArgumentList(): {}

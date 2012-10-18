@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTMulExpr extends SimpleNode {
+class ASTMulExpr extends LittleJavaNode {
   public ASTMulExpr(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTMulExpr extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=eedc8afc01bbc6ca2f58a1163127e52c (do not edit this line) */
+/* JavaCC - OriginalChecksum=d94e433ba5faf14233b9465db1259223 (do not edit this line) */

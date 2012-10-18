@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTParameterList extends SimpleNode {
+class ASTParameterList extends LittleJavaNode {
   public ASTParameterList(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTParameterList extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=d8e564910961323f382bb77995af7836 (do not edit this line) */
+/* JavaCC - OriginalChecksum=d9e46607b0ba8b2b3b52951e1efed3a7 (do not edit this line) */

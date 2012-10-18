@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTAssignExpr extends SimpleNode {
+class ASTAssignExpr extends LittleJavaNode {
   public ASTAssignExpr(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTAssignExpr extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=300f5dad59cc3e2df9ea1e8c882a5ef5 (do not edit this line) */
+/* JavaCC - OriginalChecksum=d87a4b3360b52d0828c12c75c77b85b6 (do not edit this line) */

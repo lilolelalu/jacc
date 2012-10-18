@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTIfConditionSection extends SimpleNode {
+class ASTIfConditionSection extends LittleJavaNode {
   public ASTIfConditionSection(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTIfConditionSection extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=99c7dbb47997a280e9fc551626a1dff1 (do not edit this line) */
+/* JavaCC - OriginalChecksum=03e00010900c2bfab784a73fc31bb48a (do not edit this line) */

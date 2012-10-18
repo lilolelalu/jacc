@@ -5,9 +5,9 @@ public interface LittleJavaTreeConstants
 {
   public int JJTSTART = 0;
   public int JJTCLASSDECL = 1;
-  public int JJTDECL = 2;
-  public int JJTMEMBERVARIABLEDECLARATION = 3;
-  public int JJTMEMBERFUNCTIONDECLARATION = 4;
+  public int JJTMEMBERVARIABLEDECLARATION = 2;
+  public int JJTMEMBERFUNCTIONDECLARATION = 3;
+  public int JJTTYPE = 4;
   public int JJTVOID = 5;
   public int JJTRETURNSTATEMENT = 6;
   public int JJTBREAKSTATEMENT = 7;
@@ -38,9 +38,9 @@ public interface LittleJavaTreeConstants
   public String[] jjtNodeName = {
     "Start",
     "ClassDecl",
-    "Decl",
     "MemberVariableDeclaration",
     "MemberFunctionDeclaration",
+    "Type",
     "void",
     "ReturnStatement",
     "BreakStatement",
@@ -68,4 +68,4 @@ public interface LittleJavaTreeConstants
     "ParameterList",
   };
 }
-/* JavaCC - OriginalChecksum=98320808484dfb70c7e5e4a1591d7f17 (do not edit this line) */
+/* JavaCC - OriginalChecksum=b206c8098a15b6d599a282d8ffffe7bf (do not edit this line) */

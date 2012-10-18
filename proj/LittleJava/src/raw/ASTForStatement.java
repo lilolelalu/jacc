@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTForStatement extends SimpleNode {
+class ASTForStatement extends LittleJavaNode {
   public ASTForStatement(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTForStatement extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=1a8b35b0e98966942f1ddf3a2dcde51b (do not edit this line) */
+/* JavaCC - OriginalChecksum=cc7a58d0d9fb6c8db714d88c50f912d5 (do not edit this line) */

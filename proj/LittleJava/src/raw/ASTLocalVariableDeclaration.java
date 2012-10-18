@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTLocalVariableDeclaration extends SimpleNode {
+class ASTLocalVariableDeclaration extends LittleJavaNode {
   public ASTLocalVariableDeclaration(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTLocalVariableDeclaration extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=5dd8db0bec3550e233c2eb040b0243a7 (do not edit this line) */
+/* JavaCC - OriginalChecksum=6e758773b42b78f196935aee24254260 (do not edit this line) */

@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTIfStatement extends SimpleNode {
+class ASTIfStatement extends LittleJavaNode {
   public ASTIfStatement(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTIfStatement extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=24ac19000442854af84ea51c5fb03b9b (do not edit this line) */
+/* JavaCC - OriginalChecksum=f7d761451b9ed89ff9d7fc80ef248562 (do not edit this line) */

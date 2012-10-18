@@ -6,9 +6,9 @@ public interface LittleJavaVisitor
   public Object visit(SimpleNode node, Object data);
   public Object visit(ASTStart node, Object data);
   public Object visit(ASTClassDecl node, Object data);
-  public Object visit(ASTDecl node, Object data);
   public Object visit(ASTMemberVariableDeclaration node, Object data);
   public Object visit(ASTMemberFunctionDeclaration node, Object data);
+  public Object visit(ASTType node, Object data);
   public Object visit(ASTReturnStatement node, Object data);
   public Object visit(ASTBreakStatement node, Object data);
   public Object visit(ASTContinueStatement node, Object data);
@@ -34,4 +34,4 @@ public interface LittleJavaVisitor
   public Object visit(ASTArgumentList node, Object data);
   public Object visit(ASTParameterList node, Object data);
 }
-/* JavaCC - OriginalChecksum=392f8fd10de19a1983a131b53dc3da79 (do not edit this line) */
+/* JavaCC - OriginalChecksum=f3c5780ba4cbe37326853b17568cc5ae (do not edit this line) */

@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTBreakStatement extends SimpleNode {
+class ASTBreakStatement extends LittleJavaNode {
   public ASTBreakStatement(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTBreakStatement extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=aa19426e881f20eec7f082f0869882ca (do not edit this line) */
+/* JavaCC - OriginalChecksum=d2f8630033c6139c4caaf1e3c3bc1f2b (do not edit this line) */

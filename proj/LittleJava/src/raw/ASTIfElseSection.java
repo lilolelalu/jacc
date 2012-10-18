@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTIfElseSection extends SimpleNode {
+class ASTIfElseSection extends LittleJavaNode {
   public ASTIfElseSection(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTIfElseSection extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=52fc4fddbff2f792b609f73579c57a7b (do not edit this line) */
+/* JavaCC - OriginalChecksum=37790816c6c3c064672a980a946051c3 (do not edit this line) */

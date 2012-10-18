@@ -1,5 +1,6 @@
 package refine;
 import raw.*;
+
 import java.util.Stack;
 
 public class LittleJavaRefineParser implements LittleJavaVisitor{
@@ -36,12 +37,6 @@ public class LittleJavaRefineParser implements LittleJavaVisitor{
 		visit_record.push(j_class);
 		node.childrenAccept(this, data);
 		visit_record.pop();
-		return null;
-	}
-
-	@Override
-	public Object visit(ASTDecl node, Object data) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -197,6 +192,12 @@ public class LittleJavaRefineParser implements LittleJavaVisitor{
 
 	@Override
 	public Object visit(ASTParameterList node, Object data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object visit(ASTType node, Object data) {
 		// TODO Auto-generated method stub
 		return null;
 	}

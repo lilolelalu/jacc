@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTMemberVariableDeclaration extends SimpleNode {
+class ASTMemberVariableDeclaration extends LittleJavaNode {
   public ASTMemberVariableDeclaration(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTMemberVariableDeclaration extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=3fb823a54e622d972136a61eead43945 (do not edit this line) */
+/* JavaCC - OriginalChecksum=80b78d3f4388113609b20c65f28d5b90 (do not edit this line) */

@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTDecl extends SimpleNode {
+class ASTDecl extends LittleJavaNode {
   public ASTDecl(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTDecl extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=f2b269ff061cdc813c4c5b860535f0ae (do not edit this line) */
+/* JavaCC - OriginalChecksum=3cd95b373c2448ba12bdb928b5407f9d (do not edit this line) */

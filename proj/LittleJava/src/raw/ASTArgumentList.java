@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTArgumentList extends SimpleNode {
+class ASTArgumentList extends LittleJavaNode {
   public ASTArgumentList(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTArgumentList extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=d1ac8fa83470497ebdb7e17a5b9e1c3b (do not edit this line) */
+/* JavaCC - OriginalChecksum=a6f18211449a53e7ea39443ab4925ff0 (do not edit this line) */

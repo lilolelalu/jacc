@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTRightHandValue extends SimpleNode {
+class ASTRightHandValue extends LittleJavaNode {
   public ASTRightHandValue(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTRightHandValue extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=a7f140b252ee8ee2d758c3740dab1a4c (do not edit this line) */
+/* JavaCC - OriginalChecksum=c7022187d6a53fe783f504dd621d2116 (do not edit this line) */

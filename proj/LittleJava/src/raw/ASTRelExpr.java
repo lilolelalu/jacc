@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTRelExpr extends SimpleNode {
+class ASTRelExpr extends LittleJavaNode {
   public ASTRelExpr(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTRelExpr extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=e0d979e06d8a0810e3b052042e58dc3b (do not edit this line) */
+/* JavaCC - OriginalChecksum=d7b5a1f7160c2144f2d0f3640a815ea3 (do not edit this line) */

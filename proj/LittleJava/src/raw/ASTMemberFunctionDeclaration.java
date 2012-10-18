@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTMemberFunctionDeclaration extends SimpleNode {
+class ASTMemberFunctionDeclaration extends LittleJavaNode {
   public ASTMemberFunctionDeclaration(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTMemberFunctionDeclaration extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=6cf32301f06fa5f06ded5147b7b41604 (do not edit this line) */
+/* JavaCC - OriginalChecksum=7fbf51863fb54bce0290e4149c3c18e3 (do not edit this line) */

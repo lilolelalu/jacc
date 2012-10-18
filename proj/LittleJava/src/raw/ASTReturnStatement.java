@@ -3,7 +3,7 @@
 package raw;
 
 public
-class ASTReturnStatement extends SimpleNode {
+class ASTReturnStatement extends LittleJavaNode {
   public ASTReturnStatement(int id) {
     super(id);
   }
@@ -18,4 +18,4 @@ class ASTReturnStatement extends SimpleNode {
     return visitor.visit(this, data);
   }
 }
-/* JavaCC - OriginalChecksum=cbb2df4f75a152746883564f1d5d2c56 (do not edit this line) */
+/* JavaCC - OriginalChecksum=b82a5850e951dffeae9e5b1d86d89953 (do not edit this line) */
