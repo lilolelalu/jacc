@@ -1,0 +1,56 @@
+Exercise 1:
+//请保证先看过题目～
+坑爹处 	： CHANGED变量本来就在了，导致我调试#if defined 调很久。
+		在code目录下Makefile.common里面定义了CHANGED！
+	：#if defined(CHANGED) && defined(THREADS) 这种写法会出错
+		请写成 if （ defined(CHANGED) && defined(THREADS) ）
+ 	：PV原语，P是求锁。书上p在信号量《=0时候睡觉，而老师给的代码是==0。
+		我把它改成 <=0 。使用共享变量的时候用PV上锁，最后用一个栅栏原语实现同步。
+
+threadtest.cc重要修改:
+
+#if ( defined(HW1_SEMAPHORES) && defined(THREADS) )
+int SharedVariable;
+Semaphore * SemaBegin;
+Semaphore * SemaEnd;
+void
+SimpleThread(int which)
+{
+    int num, val;
+    for(num = 0; num < 5; num++) {
+        SemaBegin->P();					//保证不被多个线程同时读取到数据。
+        val = SharedVariable;
+        printf("*** thread %d sees value %d\n", which, val);
+        currentThread->Yield();
+        SharedVariable = val+1;
+        SemaBegin->V();
+        currentThread->Yield();
+    }
+    SemaEnd->V();
+    SemaEnd->P();
+    val = SharedVariable;
+    printf("Thread %d sees final value %d\n", which, val);
+    SemaEnd->V();
+}
+#else
+
+...
+
+#if ( defined (HW1_SEMAPHORES) && defined (THREADS) )
+void
+ThreadTest(int n)
+{
+    SemaBegin=new Semaphore("Begin",1);			//初始value=1；用来防止数据被同时操作的
+    SemaEnd=new Semaphore("End",1-n);			//初始alue=1-n，每个线程快结束的时候先V一次
+							//大家都V过之后才有value>0，他们最后的P才能通过。实现栅栏
+    for(int i=0; i< n; i++){
+        Thread *t = new Thread("forked thread");
+        t->Fork(SimpleThread, i);
+    }
+}
+#else
+..
+
+
+Exercise 2:锁挺类似的，同步就有点坑爹了。。。有几个就设置几个锁。。。
+
