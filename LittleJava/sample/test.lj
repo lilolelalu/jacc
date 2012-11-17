@@ -1,0 +1,11 @@
+class test{
+	int non_static;
+	static int is_static;
+	public void test(){
+		non_static = 1;
+		si_static = 2;
+	}
+	static void main(String argv){
+		int result = non_static + is_static;
+	}
+}

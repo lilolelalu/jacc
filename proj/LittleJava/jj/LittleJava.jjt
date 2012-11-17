@@ -32,6 +32,7 @@ options {
   KEEP_LINE_COLUMN = true;
   VISITOR = true;
   NODE_CLASS = "LittleJavaNode";
+  STATIC=false;
 }
 
 PARSER_BEGIN(LittleJava)
