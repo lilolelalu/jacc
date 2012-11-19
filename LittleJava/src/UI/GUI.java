@@ -5,36 +5,38 @@ import javax.swing.*;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
 
-import CompilerForeEnd.ASTStart;
-import CompilerForeEnd.LittleJavaFacade;
-import CompilerForeEnd.SimpleNode;
+import raw.ASTStart;
+import raw.LittleJavaFacade;
+import raw.LittleJavaNode;
+import raw.SimpleNode;
 
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 
-public class GUI extends JFrame implements ActionListener{
+public class GUI extends JFrame implements ActionListener, OnTabRemovedListener, WindowListener{
 
 	/**
 	 * Member Decl
 	 */
-	private String path = "";
 	private String context;
 	private JFileChooser chooser;
 	private JToolBar toolBar;
 	private JCheckBox lexBox, syntaxBox, semanticBox, codeGeneBox;
 	private JButton btnGo;
-	private JTabbedPane compilerInfo; 
-	private JTextArea input;
-	private JTextArea lex;
+	private STabbedPane input;
+	private STabbedPane compilerInfo;
 	private JTextArea semantic;
 	private JTextArea codeGene;
 	private JButton newBtn;
@@ -47,8 +49,6 @@ public class GUI extends JFrame implements ActionListener{
 	
 	
 	private LittleJavaFacade parser;
-	private boolean hasFile = false;
-	
 	/**
 	 * Launch the application.
 	 */
@@ -85,13 +85,11 @@ public class GUI extends JFrame implements ActionListener{
 			}
 		});
 	}
-
 	/**
 	 * Create the frame.
 	 */
 	public GUI() {
 		setTitle("Little Java");
-		//path = "D:\\Workspace\\Project\\Java\\LittleJava\\sample\\first.java";
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		getContentPane().setLayout(null);
@@ -130,13 +128,11 @@ public class GUI extends JFrame implements ActionListener{
 
 		toolBar.add(btnGo);
 		
-		compilerInfo = new JTabbedPane(JTabbedPane.TOP);
+		compilerInfo = new STabbedPane(false);
 		compilerInfo.setBounds(400, 43, 350, 500);
 		getContentPane().add(compilerInfo);
-		
-		
-		lex = new JTextArea();
-		lexjsp = new JScrollPane(lex);
+	
+		lexjsp = new JScrollPane();
 		syntaxjsp = new JScrollPane();
 		semantic = new JTextArea();
 		semanticjsp = new JScrollPane(semantic);
@@ -144,22 +140,48 @@ public class GUI extends JFrame implements ActionListener{
 		codeGene = new JTextArea();
 		codeGenejsp = new JScrollPane(codeGene);
 		
-		input = new JTextArea();		
+		input = new STabbedPane(false);
+		input.addTabRemovedListener(this);
 		input.setBounds(20, 43, 350, 500);
-		JScrollPane jsp = new JScrollPane(input);
-		jsp.setBounds(20, 43, 350, 500);
-		getContentPane().add(jsp);
+		getContentPane().add(input);
 		
 		chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);//设置选择模式，既可以选择文件又可以选择文件夹
 		
 		parser = new LittleJavaFacade();
-		context = input.getText();
+		this.addWindowListener(this);
+		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 	}
 	private void displayLexInfo(){
-		String text = parser.GetLexOutput();
-		lex.setText(text);
-		compilerInfo.addTab("Lex", lexjsp);
+		ArrayList<String[]> result = parser.getLexOutput();
+		if(result.get(0)[0] == "Error"){
+			JTextArea lex = new JTextArea();
+			lex.setText(result.get(0)[1]);
+			lex.setEditable(false);
+			lexjsp.setViewportView(lex);
+			lexjsp.repaint();
+			compilerInfo.addTab("Lex", null, lexjsp, "Lex", true);
+		}
+		else{
+			String[][] danteng = new String[result.size()][2];
+			if(result.get(0)[0] != "Blank"){
+				for(int i = 0; i < result.size(); i++){
+					danteng[i] = result.get(i);
+				}
+			}
+			String[] headers = {"Type", "Token Image"};
+			DefaultTableModel model = new DefaultTableModel(danteng, headers){
+				private static final long serialVersionUID = 1L;
+				public boolean isCellEditable(int row, int column){
+					return false;
+				}
+			};
+			JTable table = new JTable(model);
+			table.getTableHeader().setReorderingAllowed(false);
+			lexjsp.setViewportView(table);
+			lexjsp.repaint();
+			compilerInfo.addTab("lex", null, lexjsp, "lex", true);
+		}
 	}
 	
 	private void displaySyntaxInfo(){
@@ -167,40 +189,41 @@ public class GUI extends JFrame implements ActionListener{
 		info[0] = "no exception";
 		ASTStart n = parser.GetSyntaxOutput(info);
 		if(info[0].toString() == "no exception"){
-			DefaultMutableTreeNode root = new DefaultMutableTreeNode("root");
-			createTree(n, root);
+			DefaultMutableTreeNode root = createTree(n);
 			JTree syntaxTree = new JTree(root);
-			syntaxTree.setRootVisible(false);
+			syntaxTree.setRootVisible(true);
 			syntaxjsp.setViewportView(syntaxTree);
 			syntaxjsp.repaint();
-			compilerInfo.addTab("Syntax", syntaxjsp);
+			compilerInfo.addTab("Syntax", null, syntaxjsp, "Syntax", true);
 		}
 		else{
 			JTextArea syntax = new JTextArea();
 			syntax.setText(info[0].toString());
+			syntax.setEditable(false);
 			syntaxjsp.setViewportView(syntax);
 			syntaxjsp.repaint();
-			compilerInfo.addTab("Syntax",syntax);
+			compilerInfo.addTab("Syntax", null, syntaxjsp, "Syntax", true);
 		}
 	}
 	
-	public void createTree(SimpleNode n, DefaultMutableTreeNode node){
-		DefaultMutableTreeNode son = new DefaultMutableTreeNode(n.toString());
-		node.add(son);
+	public DefaultMutableTreeNode createTree(LittleJavaNode n){
+		DefaultMutableTreeNode result = new DefaultMutableTreeNode(n.toString());
 		if(n.jjtGetNumChildren() != 0){
 			for(int i = 0; i < n.jjtGetNumChildren(); ++i){
-				SimpleNode tmp = (SimpleNode) n.jjtGetChild(i);
-				if(tmp != null)
-					createTree(tmp, son);
+				LittleJavaNode tmp = (LittleJavaNode) n.jjtGetChild(i);
+				if(tmp != null){
+					result.add(createTree(tmp));
+				}
 			}
 		}
+		return result;
 	}
 	private void displaySemanticInfo(){
-		compilerInfo.addTab("Semantic", semanticjsp);
+		compilerInfo.addTab("Semantic", null, semanticjsp, "Semantic", true);
 	}
 	
 	private void displayCodeGeneInfo(){
-		compilerInfo.addTab("CodeGeneration", codeGenejsp);
+		compilerInfo.addTab("CodeGeneration", null, codeGenejsp, "Code Generation", true);
 	}
 	
 	public void actionPerformed(ActionEvent e){
@@ -213,59 +236,62 @@ public class GUI extends JFrame implements ActionListener{
 		if(e.getSource() == saveBtn)
 			saveFile();
 	}
+	
+	public boolean onTabRemoved(ActionEvent e){
+		int result = checkSave();
+		if(result != 0 && result != 1)
+			return false;
+		else
+			return true;
+	}
+	
 	private void compileCode(){
-		saveFile();
-		compilerInfo.removeAll();
-		parser.Compile(path);
-		if(lexBox.isSelected())
-			displayLexInfo();
-		if(syntaxBox.isSelected())
-			displaySyntaxInfo();
-		if(semanticBox.isSelected())
-			displaySemanticInfo();
-		if(codeGeneBox.isSelected())
-			displayCodeGeneInfo();
+		int result = checkSave();
+		if(result == 0){
+			compilerInfo.removeAll();
+			parser.Compile(((WorkspaceTextPane) input.getSelectedComponent()).getPath());
+			if(lexBox.isSelected())
+				displayLexInfo();
+			if(syntaxBox.isSelected())
+				displaySyntaxInfo();
+			if(semanticBox.isSelected())
+				displaySemanticInfo();
+			if(codeGeneBox.isSelected())
+				displayCodeGeneInfo();
+		}
 	}
 	
 	
 	private void newFile(){
-		int result = checkSave();
-		if(result != 2)
-			reset();
-	}
-	private void reset(){
-		input.setText(null);
-		hasFile = false;
-		compilerInfo.removeAll();
-		path = "";
-		context = null;
+		WorkspaceTextPane tmp = new WorkspaceTextPane("");
+		input.addTab("untitled", null, tmp, null, true);
+		input.setSelectedIndex(input.getTabCount() - 1);
 	}
 	
 	private void openFile(){
-		int n = checkSave();
-		if(n != 2){
-			int retval;
-			retval = chooser.showOpenDialog(this);//显示"保存文件"对话框
-			if(retval == JFileChooser.APPROVE_OPTION) {//若成功打开
-				File file = chooser.getSelectedFile();//得到选择的文件名
-				path = file.getAbsolutePath();
-				try {
-					// What to do with the file, e.g. display it in a TextArea
-					input.read(new FileReader(file.getAbsolutePath()), null);
-					hasFile = true;
-					context = input.getText();
-				} catch (IOException ex) {
-					System.out.println("problem accessing file"
-							+ file.getAbsolutePath());
-	            }
-	        }
+		WorkspaceTextPane current = new WorkspaceTextPane("");
+		int retval;
+		retval = chooser.showOpenDialog(this);//显示"保存文件"对话框
+		if(retval == JFileChooser.APPROVE_OPTION) {//若成功打开
+			File file = chooser.getSelectedFile();//得到选择的文件名
+			try {
+				// What to do with the file, e.g. display it in a TextArea
+				current.read(new FileReader(file.getAbsolutePath()));
+				current.setPath(file.getAbsolutePath());
+				input.addTab(file.getName(), null, current, null, true);
+				input.setSelectedIndex(input.getTabCount() - 1);
+			} catch (IOException ex) {
+				System.out.println("problem accessing file"
+						+ file.getAbsolutePath());
+			}
 		}
 	}
 	
 	private int saveFile(){
 		try{
 			FileWriter fw = null;
-			if(!hasFile){
+			WorkspaceTextPane current = (WorkspaceTextPane) input.getSelectedComponent();
+			if(!current.hasFile()){
 				int retval;
 				File file = new File("untitled.lj");
 				chooser.setSelectedFile(file);
@@ -273,20 +299,18 @@ public class GUI extends JFrame implements ActionListener{
 				if(retval == JFileChooser.APPROVE_OPTION) {
 					file = chooser.getSelectedFile();
 					fw = new FileWriter(file);
-					fw.write(input.getText());
+					fw.write(current.getText());
 					fw.close();
-					hasFile = true;
-					path = file.getPath();
-					context = input.getText();
+					current.setPath(file.getAbsolutePath());
 					return 1;
 				}
 				else
 					return 0;
 			}
 			else{
-				File file = new File(path);
+				File file = new File(current.getPath());
 				fw = new FileWriter(file);
-				fw.write(input.getText());
+				fw.write(current.getText());
 				fw.close();
 				return 1;
 			}
@@ -298,7 +322,9 @@ public class GUI extends JFrame implements ActionListener{
 		}
 	}
 	private int checkSave(){
-		String temp = input.getText();
+		if(input.getComponentCount() == 0)
+			return -1;
+		String temp = ((WorkspaceTextPane) input.getSelectedComponent()).getText();
 		if(context != temp){
 			int n = JOptionPane.showConfirmDialog(this, "Save?", "Warning", JOptionPane.YES_NO_CANCEL_OPTION);
 			switch(n){
@@ -318,5 +344,50 @@ public class GUI extends JFrame implements ActionListener{
 		}
 		else
 			return 0;
+	}
+	
+	public void test(){
+		System.out.println("Close");
+	}
+	@Override
+	public void windowActivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowClosed(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowClosing(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		if(input.getTabCount() != 0){
+			while(input.getTabCount() != 0)
+				if(!input.removeTab(0))
+					return;
+		}
+		this.dispose();
+		System.exit(0);
+	}
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowIconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowOpened(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }
