@@ -152,7 +152,7 @@ public class GUI extends JFrame implements ActionListener, OnTabRemovedListener,
 		this.addWindowListener(this);
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 	}
-	private void displayLexInfo(){
+	private boolean displayLexInfo(){
 		ArrayList<String[]> result = parser.getLexOutput();
 		if(result.get(0)[0] == "Error"){
 			JTextArea lex = new JTextArea();
@@ -161,6 +161,7 @@ public class GUI extends JFrame implements ActionListener, OnTabRemovedListener,
 			lexjsp.setViewportView(lex);
 			lexjsp.repaint();
 			compilerInfo.addTab("Lex", null, lexjsp, "Lex", true);
+			return false;
 		}
 		else{
 			String[][] danteng = new String[result.size()][2];
@@ -181,6 +182,7 @@ public class GUI extends JFrame implements ActionListener, OnTabRemovedListener,
 			lexjsp.setViewportView(table);
 			lexjsp.repaint();
 			compilerInfo.addTab("lex", null, lexjsp, "lex", true);
+			return true;
 		}
 	}
 	
@@ -207,7 +209,13 @@ public class GUI extends JFrame implements ActionListener, OnTabRemovedListener,
 	}
 	
 	public DefaultMutableTreeNode createTree(LittleJavaNode n){
-		DefaultMutableTreeNode result = new DefaultMutableTreeNode(n.toString());
+		DefaultMutableTreeNode result;
+		if(n.GetValue() == null){
+			result = new DefaultMutableTreeNode(n.toString());
+		}
+		else{
+			result = new DefaultMutableTreeNode(n.toString() + ":" + n.GetValue());
+		}
 		if(n.jjtGetNumChildren() != 0){
 			for(int i = 0; i < n.jjtGetNumChildren(); ++i){
 				LittleJavaNode tmp = (LittleJavaNode) n.jjtGetChild(i);
@@ -250,13 +258,14 @@ public class GUI extends JFrame implements ActionListener, OnTabRemovedListener,
 		if(result == 0){
 			compilerInfo.removeAll();
 			parser.Compile(((WorkspaceTextPane) input.getSelectedComponent()).getPath());
+			boolean flag = true;
 			if(lexBox.isSelected())
-				displayLexInfo();
-			if(syntaxBox.isSelected())
+				flag = displayLexInfo();
+			if(syntaxBox.isSelected() && flag)
 				displaySyntaxInfo();
-			if(semanticBox.isSelected())
+			if(semanticBox.isSelected() && flag)
 				displaySemanticInfo();
-			if(codeGeneBox.isSelected())
+			if(codeGeneBox.isSelected() && flag)
 				displayCodeGeneInfo();
 		}
 	}

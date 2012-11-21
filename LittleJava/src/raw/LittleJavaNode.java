@@ -7,6 +7,10 @@ public class LittleJavaNode extends SimpleNode{
 		value = v;
 	}
 	
+	public String GetValue(){
+		return value;
+	}
+	
 	public LittleJavaNode(int i) {
 		super(i);
 		value = null; 

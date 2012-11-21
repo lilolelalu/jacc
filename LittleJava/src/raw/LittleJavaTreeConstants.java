@@ -7,32 +7,33 @@ public interface LittleJavaTreeConstants
   public int JJTCLASSDECL = 1;
   public int JJTMEMBERVARIABLEDECLARATION = 2;
   public int JJTMEMBERFUNCTIONDECLARATION = 3;
-  public int JJTTYPE = 4;
-  public int JJTVOID = 5;
-  public int JJTRETURNSTATEMENT = 6;
-  public int JJTBREAKSTATEMENT = 7;
-  public int JJTCONTINUESTATEMENT = 8;
-  public int JJTBLOCKSTATEMENT = 9;
-  public int JJTLOCALVARIABLEDECLARATION = 10;
-  public int JJTIFSTATEMENT = 11;
-  public int JJTIFCONDITIONSECTION = 12;
-  public int JJTIFEXECUTESECTION = 13;
-  public int JJTIFELSESECTION = 14;
-  public int JJTWHILESTATEMENT = 15;
-  public int JJTFORSTATEMENT = 16;
-  public int JJTFORINITSECTION = 17;
-  public int JJTFOREXECUTESECTION = 18;
-  public int JJTASSIGNEXPR = 19;
-  public int JJTOREXPR = 20;
-  public int JJTANDEXPR = 21;
-  public int JJTEQUEXPR = 22;
-  public int JJTRELEXPR = 23;
-  public int JJTADDEXPR = 24;
-  public int JJTMULEXPR = 25;
-  public int JJTRIGHTHANDVALUE = 26;
-  public int JJTLEFTHANDVALUE = 27;
-  public int JJTARGUMENTLIST = 28;
-  public int JJTPARAMETERLIST = 29;
+  public int JJTRETURNTYPE = 4;
+  public int JJTTYPE = 5;
+  public int JJTVOID = 6;
+  public int JJTRETURNSTATEMENT = 7;
+  public int JJTBREAKSTATEMENT = 8;
+  public int JJTCONTINUESTATEMENT = 9;
+  public int JJTBLOCKSTATEMENT = 10;
+  public int JJTLOCALVARIABLEDECLARATION = 11;
+  public int JJTIFSTATEMENT = 12;
+  public int JJTIFCONDITIONSECTION = 13;
+  public int JJTIFEXECUTESECTION = 14;
+  public int JJTIFELSESECTION = 15;
+  public int JJTWHILESTATEMENT = 16;
+  public int JJTFORSTATEMENT = 17;
+  public int JJTFORINITSECTION = 18;
+  public int JJTFOREXECUTESECTION = 19;
+  public int JJTASSIGNEXPR = 20;
+  public int JJTOREXPR = 21;
+  public int JJTANDEXPR = 22;
+  public int JJTEQUEXPR = 23;
+  public int JJTRELEXPR = 24;
+  public int JJTADDEXPR = 25;
+  public int JJTMULEXPR = 26;
+  public int JJTRIGHTHANDVALUE = 27;
+  public int JJTLEFTHANDVALUE = 28;
+  public int JJTARGUMENTLIST = 29;
+  public int JJTPARAMETERLIST = 30;
 
 
   public String[] jjtNodeName = {
@@ -40,6 +41,7 @@ public interface LittleJavaTreeConstants
     "ClassDecl",
     "MemberVariableDeclaration",
     "MemberFunctionDeclaration",
+    "ReturnType",
     "Type",
     "void",
     "ReturnStatement",
@@ -68,4 +70,4 @@ public interface LittleJavaTreeConstants
     "ParameterList",
   };
 }
-/* JavaCC - OriginalChecksum=b206c8098a15b6d599a282d8ffffe7bf (do not edit this line) */
+/* JavaCC - OriginalChecksum=3ab9e67bc8b6e6826bf9710893bce031 (do not edit this line) */

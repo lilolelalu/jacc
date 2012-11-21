@@ -79,10 +79,8 @@ public class LittleJavaFacade {
 			}
 		}
 		canUse = false;
-		
 		try {
 			return parser.Start();
-			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			info[0] = e.getMessage();

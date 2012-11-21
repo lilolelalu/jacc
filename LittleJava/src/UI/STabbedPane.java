@@ -68,7 +68,7 @@ public class STabbedPane extends JTabbedPane {
             String tip, boolean closable) {  
         addTab(title, icon, component, tip);  
         this.closable.add(closable);  
-    }  
+    }
   
     /** 
      * 移除组件 
@@ -155,29 +155,25 @@ public class STabbedPane extends JTabbedPane {
             UIManager.put("TabbedPane.contentAreaColor", colorSouth);  
             addMouseListener(new MouseAdapter() {  
                 public void mousePressed(MouseEvent e) {  
-                    for (int i = 0; i < getTabCount(); i++) {
-                    	if(closeRects.length != 0){
+                    for (int i = 0; i < closeRects.length; i++) {
                         if (closeRects[i].contains(e.getPoint())  
                                 && closable.get(i)) {  
                         	if(i == getSelectedIndex())
-                        		removeTab(i);  
+                        		removeTab(i);
                         }
-                    	}
                     }  
                 }  
             });  
             addMouseMotionListener(new MouseAdapter() {  
                 public void mouseMoved(MouseEvent e) {  
-                    nowIndex = -1;  
-                    for (int i = 0; i < getTabCount(); i++) {  
-                    	if(closeRects.length != 0){
-                        if (closeRects[i].contains(e.getPoint())  
-                                && closable.get(i)) {  
-                            nowIndex = i;  
-                            break;  
-                        }
+                    nowIndex = -1;
+                    for (int i = 0; i < closeRects.length; i++) { 
+                    	if (closeRects[i].contains(e.getPoint())  
+                    			&& closable.get(i)) {
+                    		nowIndex = i;
+                    		break;
                     	}
-                    }  
+                    }
                     if (oldIndex != nowIndex) {  
                         if (nowIndex != -1) {  
                             repaint(closeRects[nowIndex]);// 控制重绘区域  
@@ -406,11 +402,11 @@ public class STabbedPane extends JTabbedPane {
   
         @Override  
         protected LayoutManager createLayoutManager() {  
-            return new TabbedPaneLayout();  
-        }  
+            return new TabbedPaneLayout();
+        }
   
-        @Override  
-        protected void assureRectsCreated(int tabCount) {  
+        @Override
+        protected void assureRectsCreated(int tabCount) {
             super.assureRectsCreated(tabCount);  
             int rectArrayLen = closeRects.length;  
             if (tabCount != rectArrayLen) {  

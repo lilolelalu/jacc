@@ -1,0 +1,347 @@
+/* Copyright (c) 2006, Sun Microsystems, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *     * Redistributions of source code must retain the above copyright notice,
+ *       this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ *     * Neither the name of the Sun Microsystems, Inc. nor the names of its
+ *       contributors may be used to endorse or promote products derived from
+ *       this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+ * THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+
+options {
+  MULTI=true;
+  KEEP_LINE_COLUMN = true;
+  VISITOR = true;
+  NODE_CLASS = "LittleJavaNode";
+  STATIC=false;
+}
+
+PARSER_BEGIN(LittleJava)
+package raw;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class LittleJava {
+
+  /** Main entry point. */
+  public static void main(String args[]) throws IOException {
+	FileInputStream fis = null;
+	try{
+		fis = new FileInputStream("./sample/first.java");
+		LittleJava parser = new LittleJava(fis);
+		ASTStart n = parser.Start();
+		n.dump("");
+		System.out.println("Thank you.");
+		fis.close();
+	}
+	catch (FileNotFoundException e){
+		if (fis != null){
+			fis.close();
+		}
+	}
+	catch( Exception e){
+		System.out.println("Oops.");
+		System.out.println(e.getMessage());
+		e.printStackTrace();
+	}
+	return;
+  }
+}
+
+PARSER_END(LittleJava)
+
+
+SKIP :
+{
+  " "
+| "\t"
+| "\n"
+| "\r"
+| <"//" (~["\n","\r"])* ("\n"|"\r"|"\r\n")>
+| <"/*" (~["*"])* "*" (~["/"] (~["*"])* "*")* "/">
+}
+
+
+TOKEN : // RESERVED WORDS
+{
+	< BREAK: "break" >
+|
+	< CLASS: "class" >
+|
+	< CONTINUE: "continue" >
+|
+	< ELSE: "else" >
+|
+	< FALSE: "false" >
+|
+	< FOR: "for" >
+|
+	< IF: "if" >
+|
+	< RETURN: "return" >
+|
+	< STATIC: "static" >
+|
+	< TRUE: "true" >
+|
+	< WHILE: "while" >
+}
+
+TOKEN : /* LITERALS */
+{
+  < INTEGER_LITERAL:
+        <DECIMAL_LITERAL> (["l","L"])?
+      | <HEX_LITERAL> (["l","L"])?
+      | <OCTAL_LITERAL> (["l","L"])?
+  >
+|
+  < FLOAT_LITERAL: <DECIMAL_LITERAL> "." <DECIMAL_LITERAL> (["f", "F"])? >
+|
+  < #DECIMAL_LITERAL: ["1"-"9"] (["0"-"9"])* >
+|
+  < #HEX_LITERAL: "0" ["x","X"] (["0"-"9","a"-"f","A"-"F"])+ >
+|
+  < #OCTAL_LITERAL: "0" (["0"-"7"])* >
+}
+
+TOKEN : /* TYPES */
+{
+	< PRIMITIVE_TYPE: <INT> | <CHAR> | <FLOAT> | <BOOL> | <VOID> >
+| 
+	< #INT: 	"int" >
+| 
+	< #CHAR:	"char" >
+| 
+	< #FLOAT:	"float" >
+| 
+	< #BOOL:	"bool" >
+| 
+	< #VOID:	"void" >
+}
+
+TOKEN : /* IDENTIFIERS */
+{
+	< IDENTIFIER: <LETTER> (<LETTER>|<DIGIT>)* >
+|
+	< #LETTER: ["_","a"-"z","A"-"Z"] >
+|
+	< #DIGIT: ["0"-"9"] >
+}
+
+/** Main production. */
+ASTStart Start() : {}
+{
+	/** ( ImportSection() )* */ ( ClassDecl() )*<EOF>
+	{
+		return jjtThis; 
+	}
+}
+
+/*void ImportSection(): {}
+{
+}*/
+
+void ClassDecl(): 
+{
+	Token t;
+}
+{
+	"class" t = <IDENTIFIER> { jjtThis.SetValue(t.image); } "{" 
+		( 
+			LOOKAHEAD(5, [ "static" ] Type() <IDENTIFIER> ( ";" | "=" ) ) MemberVariableDeclaration() 
+		| 
+			MemberFunctionDeclaration() 
+		) * 
+	"}"
+}
+
+void MemberVariableDeclaration() : {
+	Token t;
+}
+{
+	[ "static" ] Type() t = <IDENTIFIER> ( "=" Expr() ) ? ";"
+	{ jjtThis.SetValue(t.image); }
+}
+
+void MemberFunctionDeclaration() : {
+	Token t;
+}
+{
+	[ "static" ] Type() #ReturnType t =  <IDENTIFIER> "(" [ ParameterList() ]  ")" "{" ( Statement() ) * "}"
+	{ jjtThis.SetValue(t.image); }
+}
+
+
+void Type(): 
+{
+	Token t;
+	String s = "";
+}
+{
+	( t = <PRIMITIVE_TYPE> ( "[" "]" { s += "[]"; } ) * |  t = <IDENTIFIER> ( "[" "]" { s += "[]"; }) * )
+	{ jjtThis.SetValue(t.image + s); }
+	
+}
+
+void Statement() #void : {}
+{
+	"{" BlockStatement() "}" 
+| 
+	("return" Expr() ";") #ReturnStatement 
+|
+	("break" ";") #BreakStatement
+|
+	("continue" ";") #ContinueStatement
+|
+	ExpressionDeclaration() ";"
+|
+	IfStatement() 
+| 
+	WhileStatement() 
+|
+	ForStatement()
+}
+
+void BlockStatement(): {}
+{
+	( Statement() ) *
+}
+
+void ExpressionDeclaration() #void: {}
+{
+	LOOKAHEAD(2)
+	Expr() | LocalVariableDeclaration()
+}
+
+void LocalVariableDeclaration(): {
+	Token t;
+}
+{
+	Type() t = <IDENTIFIER> [ "=" Expr() ]
+	{ jjtThis.SetValue(t.image); }
+}
+
+void IfStatement(): {}
+{
+	"if" "(" Expr() #IfConditionSection ")" ( Statement() #IfExecuteSection ) [ LOOKAHEAD(1) "else" Statement() #IfElseSection ]
+}
+
+void WhileStatement(): {}
+{
+	"while" "(" Expr() ")" Statement()
+}
+
+void ForStatement(): {}
+{
+	"for" ( "(" [ ExpressionDeclaration() ] ";"  [ Expr() ] ";" [ AssignExpr() ] ")" ) #ForInitSection Statement() #ForExecuteSection
+}
+
+void Expr() #void : {}
+{
+	AssignExpr()
+}
+
+void AssignExpr() #void : {}
+{
+	LOOKAHEAD(2)
+	LeftHandValue() "=" AssignExpr() #AssignExpr | OrExpr()
+}
+
+void OrExpr() #void : {}
+{
+	( 
+		AndExpr() ( "||" AndExpr() ) * 
+	) #OrExpr(>1)
+}
+
+void AndExpr() #void : {}
+{
+	(
+		EquExpr() ( "&&" EquExpr() ) * 
+	) #AndExpr(>1)
+}
+
+void EquExpr() #void : {}
+{
+	(
+		RelExpr() ( ( "==" | "!=" ) RelExpr() ) * 
+	) #EquExpr(>1)
+}
+
+void RelExpr() #void : {}
+{
+	(
+		AddExpr() ( ( "<" | "<=" | ">" | ">=" ) AddExpr() ) * 
+	) #RelExpr(>1)
+}
+
+void AddExpr() #void : {}
+{
+	(
+		MulExpr() ( ( "+" | "-" ) MulExpr() ) * 
+	) #AddExpr(>1)
+}
+
+void MulExpr() #void : {}
+{
+	(
+		UnaryExpr() ( ( "*" | "/" | "%" ) UnaryExpr() ) * 
+	) #MulExpr(>1)
+}
+
+void UnaryExpr() #void : {} 
+{
+	( "-" | "!" ) UnaryExpr() | "(" Expr() ")" | RightHandValue() | LeftHandValue()
+}
+
+/*void VarExpr() #void: {}
+{
+	RightHandValue() | LeftHandValue()
+}*/
+
+void RightHandValue(): {
+	Token t;
+}
+{
+	( t = "true" | t = "false" | t = <INTEGER_LITERAL> | t = <FLOAT_LITERAL> ) 
+	{ jjtThis.SetValue(t.image); } 
+}
+
+void LeftHandValue(): {
+	Token t;
+}
+{
+	t = <IDENTIFIER> { jjtThis.SetValue(t.image); }
+}
+
+void ArgumentList(): {}
+{
+	<IDENTIFIER> ( ","  <IDENTIFIER> ) *
+}
+
+void ParameterList(): {}
+{
+	Type() <IDENTIFIER> ( ","  Type() <IDENTIFIER> ) *
+}

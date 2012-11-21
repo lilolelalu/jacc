@@ -202,4 +202,10 @@ public class LittleJavaRefineParser implements LittleJavaVisitor{
 		return null;
 	}
 
+	@Override
+	public Object visit(ASTReturnType node, Object data) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
